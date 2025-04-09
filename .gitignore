@@ -1,4 +1,1 @@
-# Ignore sensitive and system files
-/backend/config/db.php
-*.env
 .DS_Store
