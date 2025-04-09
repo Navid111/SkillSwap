@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 21, 2025 at 07:55 PM
+-- Generation Time: Apr 09, 2025 at 11:28 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,6 +35,15 @@ CREATE TABLE `comments` (
   `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`comment_id`, `tutorial_id`, `user_id`, `comment`, `created_at`) VALUES
+(1, 5, 2, 'Could you explain?', '2025-04-10 02:25:16'),
+(2, 4, 2, 'Could you explain?', '2025-04-10 02:25:40'),
+(3, 2, 2, 'Could you explain?', '2025-04-10 02:26:06');
+
 -- --------------------------------------------------------
 
 --
@@ -49,6 +58,16 @@ CREATE TABLE `messages` (
   `sent_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`message_id`, `sender_id`, `receiver_id`, `message`, `sent_at`) VALUES
+(1, 2, 3, 'Hello Navid, How are you?', '2025-04-10 02:00:24'),
+(2, 3, 2, 'Hey, I\'m fine, how are you?', '2025-04-10 02:05:24'),
+(3, 4, 2, 'Hello', '2025-04-10 02:12:03'),
+(4, 4, 3, 'Hi', '2025-04-10 02:12:27');
+
 -- --------------------------------------------------------
 
 --
@@ -61,6 +80,15 @@ CREATE TABLE `ratings` (
   `user_id` int(11) DEFAULT NULL,
   `rating` int(11) DEFAULT NULL CHECK (`rating` between 1 and 5)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ratings`
+--
+
+INSERT INTO `ratings` (`rating_id`, `tutorial_id`, `user_id`, `rating`) VALUES
+(1, 5, 2, 5),
+(2, 4, 2, 4),
+(3, 2, 2, 5);
 
 -- --------------------------------------------------------
 
@@ -82,7 +110,9 @@ CREATE TABLE `tutorials` (
 
 INSERT INTO `tutorials` (`tutorial_id`, `user_id`, `title`, `description`, `created_at`) VALUES
 (1, 2, 'Hello World', 'This is a Test Tutorial,\r\nWelcome.', '2025-03-22 00:31:08'),
-(2, 3, 'Welcome World', 'This is also a Test Tutorial,\r\nHello!', '2025-03-22 00:32:11');
+(2, 3, 'Welcome World', 'This is also a Test Tutorial,\r\nHello!', '2025-03-22 00:32:11'),
+(4, 3, 'Another Test', 'Thank You', '2025-03-27 14:01:02'),
+(5, 4, 'Welcome to The NewAge', 'Hello World, Welcome to The NewAge!', '2025-04-10 02:11:37');
 
 -- --------------------------------------------------------
 
@@ -105,7 +135,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `name`, `email`, `password`, `role`) VALUES
 (1, 'Administrator', 'admin@user.com', '$2y$10$i68U4FIZQHvf8NKEp0nPLOe2oFnBXkCTXBhf93WxNvb9QlGe5lUK6', 'admin'),
 (2, 'Talal', 'talal@teacher.com', '$2y$10$qx/NlkI74tSxfgOZN6D64elBlfhuSrHtccVPdX/2zFarzUAzmF4cq', 'teacher'),
-(3, 'Navid', 'navid@teacher.com', '$2y$10$fuG2j5Wn8OBRQjIBJP7Kcu92t2QYfMmVZVbm0OsgVGZzb5Vy7NpWu', 'teacher');
+(3, 'Navid', 'navid@teacher.com', '$2y$10$fuG2j5Wn8OBRQjIBJP7Kcu92t2QYfMmVZVbm0OsgVGZzb5Vy7NpWu', 'teacher'),
+(4, 'Synthia', 'synthia@student.com', '$2y$10$uLOeVi5odF/UdQZiTibqIOaLf9T5IqAQqECwSdbv3xfrKfnxoSWZS', 'student');
 
 --
 -- Indexes for dumped tables
@@ -157,31 +188,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `ratings`
 --
 ALTER TABLE `ratings`
-  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tutorials`
 --
 ALTER TABLE `tutorials`
-  MODIFY `tutorial_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `tutorial_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
