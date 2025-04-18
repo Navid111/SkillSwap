@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 if(!isset($_SESSION['user_id']) || $_SESSION['user_role'] != 'admin'){
@@ -20,8 +21,9 @@ $tutorials = $adminObj->getAllTutorials();
 <style>
     body {
         font-family: Georgia, serif;
-        background: linear-gradient(to bottom right, #888888, #000000);
+        background: #000000;
         color: #fff;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
         margin: 0;
         padding: 0;
     }
@@ -111,12 +113,12 @@ $tutorials = $adminObj->getAllTutorials();
         </tr>
         <?php foreach($tutorials as $tutorial): ?>
             <tr>
-                <td><?php echo htmlspecialchars($tutorial['id']); ?></td>
+                <td><?php echo htmlspecialchars($tutorial['id'] ?? 'N/A'); ?></td>
                 <td><?php echo htmlspecialchars($tutorial['title']); ?></td>
-                <td><?php echo htmlspecialchars($tutorial['category']); ?></td>
-                <td><a href="edit_tutorial.php?id=<?php echo $tutorial['id']; ?>">Edit</a></td>
+                <td><?php echo htmlspecialchars($tutorial['category'] ?? 'N/A'); ?></td>
+                <td><a href="edit_tutorial.php?id=<?php echo urlencode($tutorial['id'] ?? ''); ?>">Edit</a></td>
             </tr>
         <?php endforeach; ?>
+
     </table>
 </main>
-
