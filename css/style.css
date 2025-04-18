@@ -95,3 +95,15 @@ table, th, td {
   padding: 10px;
   border-radius: 3px;
 }
+.background-layer:nth-child(1) {
+  background-image: url('/SkillSwap/images/pexels-atypi.jpg');
+  animation-delay: 0s;
+}
+.background-layer:nth-child(2) {
+  background-image: url('/SkillSwap/images/pexels-katl.jpg');
+  animation-delay: 8s;
+}
+.background-layer:nth-child(3) {
+  background-image: url('/SkillSwap/images/pexels-nic.jpg');
+  animation-delay: 16s;
+}

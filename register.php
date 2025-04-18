@@ -61,7 +61,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url('images/brain.jpg');
+        background-image: url('images/pknop-3760323.jpg');
         background-size: cover;
         background-position: center;
         filter: blur(5px) brightness(0.8) contrast(1.2); /* Apply filter only to the image */
