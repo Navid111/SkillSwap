@@ -1,3 +1,22 @@
+<?php
+session_start();
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    // Store the tutorial ID in the session so we can redirect back after login
+    if (isset($_GET['tutorial_id'])) {
+        $_SESSION['redirect_tutorial_id'] = $_GET['tutorial_id'];
+    }
+    header("Location: login.php");
+    exit;
+}
+
+// If the user is logged in, continue with the tutorial display
+require_once 'includes/db.php';
+require_once 'classes/Tutorial.php';
+require_once 'classes/RatingComment.php';
+
+// Get tutorial data here...
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -248,14 +267,13 @@
             <div class="tutorial-header">
                 <h1>welcome</h1>
                 <div class="tutorial-meta">
-                    <p>welcome to skill ...</p>
+                    <p>welcome to skill Swap</p>
                     <p>Created at: 2025- April 18</p>
                 </div>
             </div>
             
             <div class="tutorial-content">
-                <p>This is where the tutorial content would go. The content provides valuable information about the topic and helps users learn new skills.</p>
-                <p>Multiple paragraphs of content may appear here, with detailed explanations and examples.</p>
+               
             </div>
             
             <div class="rating-section">

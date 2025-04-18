@@ -15,6 +15,24 @@ $tutorialObj = new Tutorial($db);
 
 $userProfile = $userObj->getProfile($_SESSION['user_id']);
 $selfTutorials = $tutorialObj->getTutorialsByUser($_SESSION['user_id']);
+if($user) {
+    $_SESSION['user_id'] = $user['user_id'];
+    $_SESSION['user_name'] = $user['name'];
+    $_SESSION['user_role'] = $user['role'];
+    
+    // Check if there's a redirect to a specific tutorial
+    if(isset($_SESSION['redirect_tutorial_id'])) {
+        $tutorial_id = $_SESSION['redirect_tutorial_id'];
+        unset($_SESSION['redirect_tutorial_id']); // Clear the session variable
+        header("Location: view_tutorial.php?tutorial_id=" . $tutorial_id);
+        exit;
+    } else {
+        header("Location: users.php");
+        exit;
+    }
+} else {
+    $error = "Invalid email or password";
+}
 $allTutorials = $tutorialObj->getAllTutorials();
 $otherTutorials = array_filter($allTutorials, function($tutorial) {
     return $tutorial['user_id'] != $_SESSION['user_id'];
