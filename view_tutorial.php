@@ -111,12 +111,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             padding: 0 20px;
         }
         
-        .tutorial-view {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            box-shadow: 0 8px 16px var(--shadow-color);
-            overflow: hidden;
-        }
+		.tutorial-view {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 20px;
+			text-align: center;
+			background: #fff;
+			border-radius: 8px;
+			box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+		}
         
         .tutorial-header {
             background: linear-gradient(135deg, var(--primary-color), #2a5a8d);
@@ -131,7 +134,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         
         .tutorial-meta {
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
         }
         
         .tutorial-content {
@@ -139,14 +141,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             border-bottom: 1px solid var(--border-color);
         }
         
-        .message {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            display: none; /* Hide initially, show with JS when needed */
-        }
+		.message {
+			padding: 10px;
+			margin-bottom: 20px;
+			background: #d4edda;
+			color: #155724;
+			border-radius: 4px;
+		}
         
         .section-heading {
             color: var(--primary-color);
@@ -314,7 +315,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         <div class="tutorial-content">
             <p><?php echo nl2br(htmlspecialchars($tutorial['description'])); ?></p>
             <div class="tutorial-meta">
-                <p><strong>Created at:</strong> <?php echo htmlspecialchars($tutorial['created_at']); ?></p>
+            <p><strong>Created at:</strong> <?php echo htmlspecialchars($tutorial['created_at']); ?></p>
             </div>
         </div>
         
