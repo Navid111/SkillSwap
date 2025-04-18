@@ -1,21 +1,62 @@
 <?php
 session_start();
-// Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
-    // Store the tutorial ID in the session so we can redirect back after login
-    if (isset($_GET['tutorial_id'])) {
-        $_SESSION['redirect_tutorial_id'] = $_GET['tutorial_id'];
-    }
+if(!isset($_SESSION['user_id'])){
     header("Location: login.php");
     exit;
 }
 
-// If the user is logged in, continue with the tutorial display
 require_once 'includes/db.php';
 require_once 'classes/Tutorial.php';
 require_once 'classes/RatingComment.php';
 
-// Get tutorial data here...
+$db = (new Database())->getConnection();
+$tutorialObj = new Tutorial($db);
+$ratingCommentObj = new RatingComment($db);
+
+if(!isset($_GET['tutorial_id'])){
+    header("Location: users.php");
+    exit;
+}
+
+$tutorial_id = $_GET['tutorial_id'];
+$tutorial = $tutorialObj->getTutorialById($tutorial_id);
+
+if(!$tutorial){
+    header("Location: users.php");
+    exit;
+}
+
+// Get the average rating
+$average_rating = $ratingCommentObj->getAverageRating($tutorial_id);
+
+// Get all comments
+$comments = $ratingCommentObj->getComments($tutorial_id);
+
+// Process rating and comment submission
+$message = '';
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if(isset($_POST['rating'])){
+        $rating = $_POST['rating'];
+        if($ratingCommentObj->addRating($tutorial_id, $_SESSION['user_id'], $rating)){
+            $message = 'Rating submitted successfully!';
+            // Refresh the average rating
+            $average_rating = $ratingCommentObj->getAverageRating($tutorial_id);
+        } else {
+            $message = 'Failed to submit rating.';
+        }
+    }
+    
+    if(isset($_POST['comment']) && !empty($_POST['comment'])){
+        $comment = $_POST['comment'];
+        if($ratingCommentObj->addComment($tutorial_id, $_SESSION['user_id'], $comment)){
+            $message = 'Comment posted successfully!';
+            // Refresh comments
+            $comments = $ratingCommentObj->getComments($tutorial_id);
+        } else {
+            $message = 'Failed to post comment.';
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -258,61 +299,69 @@ require_once 'classes/RatingComment.php';
 <body>
     <header>
         <a href="index.php">Home</a>
-        <a href="my_account.php">My Account</a>
+        <a href="users.php">My Account</a>
         <a href="logout.php">Logout</a>
     </header>
 
     <main>
-        <div class="tutorial-view">
-            <div class="tutorial-header">
-                <h1>welcome</h1>
-                <div class="tutorial-meta">
-                    <p>welcome to skill Swap</p>
-                    <p>Created at: 2025- April 18</p>
-                </div>
-            </div>
-            
-            <div class="tutorial-content">
-               
-            </div>
-            
-            <div class="rating-section">
-                <h2 class="section-heading">Rating</h2>
-                
-                <div class="current-rating">
-                    <div class="rating-value">No ratings yet</div>
-                    <div class="stars-display">☆☆☆☆☆</div>
-                </div>
-                
-                <form class="rating-form">
-                    <div class="star-rating">
-                        <input type="radio" id="star5" name="rating" value="5"><label for="star5"></label>
-                        <input type="radio" id="star4" name="rating" value="4"><label for="star4"></label>
-                        <input type="radio" id="star3" name="rating" value="3"><label for="star3"></label>
-                        <input type="radio" id="star2" name="rating" value="2"><label for="star2"></label>
-                        <input type="radio" id="star1" name="rating" value="1"><label for="star1"></label>
-                    </div>
-                    <button type="submit" class="rate-btn">Submit Rating</button>
-                </form>
-            </div>
-            
-            <div class="comments-section">
-                <h2 class="section-heading">Comments</h2>
-                
-                <form class="comment-form">
-                    <textarea placeholder="Add your comment..."></textarea>
-                    <button type="submit">Post Comment</button>
-                </form>
-                
-                <div class="comments-list">
-                    <div class="no-comments">
-                        <p></p>
-                    </div>
-                    <!-- Comments would be dynamically inserted here -->
-                </div>
+    <div class="tutorial-view">
+        <h1><?php echo htmlspecialchars($tutorial['title']); ?></h1>
+        
+        <?php if($message): ?>
+            <div class="message"><?php echo $message; ?></div>
+        <?php endif; ?>
+        
+        <div class="tutorial-content">
+            <p><?php echo nl2br(htmlspecialchars($tutorial['description'])); ?></p>
+            <div class="tutorial-meta">
+                <p><strong>Created at:</strong> <?php echo htmlspecialchars($tutorial['created_at']); ?></p>
             </div>
         </div>
-    </main>
+        
+        <div class="rating-section">
+            <h2>Rating</h2>
+            <p>Average Rating: <span class="rating-value"><?php echo $average_rating ? $average_rating : 'No ratings yet'; ?></span> / 5</p>
+            
+            <form action="view_tutorial.php?tutorial_id=<?php echo $tutorial_id; ?>" method="POST" class="rating-form">
+                <div class="star-rating">
+                    <input type="radio" id="star5" name="rating" value="5"><label for="star5"></label>
+                    <input type="radio" id="star4" name="rating" value="4"><label for="star4"></label>
+                    <input type="radio" id="star3" name="rating" value="3"><label for="star3"></label>
+                    <input type="radio" id="star2" name="rating" value="2"><label for="star2"></label>
+                    <input type="radio" id="star1" name="rating" value="1"><label for="star1"></label>
+                </div>
+                <button type="submit" class="rate-btn">Submit Rating</button>
+            </form>
+        </div>
+        
+        <div class="comments-section">
+            <h2>Comments</h2>
+            
+            <form action="view_tutorial.php?tutorial_id=<?php echo $tutorial_id; ?>" method="POST" class="comment-form">
+                <textarea name="comment" placeholder="Add your comment..." required></textarea>
+                <button type="submit">Post Comment</button>
+            </form>
+            
+            <div class="comments-list">
+                <?php if(count($comments) > 0): ?>
+                    <?php foreach($comments as $comment): ?>
+                        <div class="comment">
+                            <div class="comment-header">
+                                <span class="commenter"><?php echo htmlspecialchars($comment['username']); ?></span>
+                                <span class="comment-date"><?php echo htmlspecialchars($comment['created_at']); ?></span>
+                            </div>
+                            <div class="comment-body">
+                                <?php echo nl2br(htmlspecialchars($comment['comment'])); ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No comments yet. Be the first to comment!</p>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</main>
 
     <footer>
         © DEV3 2025 Skill-Swap
