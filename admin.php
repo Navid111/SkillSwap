@@ -84,7 +84,7 @@ $tutorials = $adminObj->getAllTutorials();
     <h1>Admin Dashboard</h1>
 
     <h2>Users</h2>
-    <table>
+    <table border="1">
         <tr>
             <th>User ID</th>
             <th>Name</th>
@@ -102,23 +102,27 @@ $tutorials = $adminObj->getAllTutorials();
             </tr>
         <?php endforeach; ?>
     </table>
-
     <h2>Tutorials</h2>
-    <table>
+    <table border="1">
         <tr>
             <th>Tutorial ID</th>
             <th>Title</th>
-            <th>Category</th>
+            <th>Description</th>
+            <th>Author</th>
+            <th>Created At</th>
             <th>Action</th>
         </tr>
         <?php foreach($tutorials as $tutorial): ?>
             <tr>
-                <td><?php echo htmlspecialchars($tutorial['id'] ?? 'N/A'); ?></td>
+                <td><?php echo htmlspecialchars($tutorial['tutorial_id']); ?></td>
                 <td><?php echo htmlspecialchars($tutorial['title']); ?></td>
-                <td><?php echo htmlspecialchars($tutorial['category'] ?? 'N/A'); ?></td>
-                <td><a href="edit_tutorial.php?id=<?php echo urlencode($tutorial['id'] ?? ''); ?>">Edit</a></td>
+                <td><?php echo htmlspecialchars($tutorial['description']); ?></td>
+                <td><?php echo htmlspecialchars($tutorial['author']); ?></td>
+                <td><?php echo htmlspecialchars($tutorial['created_at']); ?></td>
+                <td>
+                    <a href="delete_tutorial.php?tutorial_id=<?php echo $tutorial['tutorial_id']; ?>" onclick="return confirm('Delete this tutorial?')">Delete</a>
+                </td>
             </tr>
         <?php endforeach; ?>
-
-    </table>
+	</table>
 </main>
