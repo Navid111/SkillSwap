@@ -61,7 +61,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         .form-side {
             width: 60%;
             padding: 40px;
-            background-color: rgba(0, 0, 0, 0.95);
+            background-color: rgba(0, 0, 0, 0.9);
             display: flex;
             flex-direction: column;
         }
@@ -142,7 +142,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         .welcome-side {
             width: 40%;
-            background-color: rgba(57, 91, 144, 0.95);
+            background-color: rgba(57, 91, 144, 1);
             color: black;
             display: flex;
             flex-direction: column;
