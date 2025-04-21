@@ -45,11 +45,18 @@ $tutorials = $adminObj->getAllTutorials();
         box-shadow: 0 4px 8px rgba(0,0,0,0.5);
         border-radius: 8px;
         overflow: hidden;
+        table-layout: fixed; /* Important for wrapping */
+        word-wrap: break-word;		
     }
-
+	
     th, td {
         padding: 12px 15px;
         text-align: left;
+        vertical-align: top;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+        max-width: 200px; /* Adjust as needed */
     }
 
     th {
@@ -69,7 +76,6 @@ $tutorials = $adminObj->getAllTutorials();
         background-color: #555555;
         transition: 0.3s ease-in-out;
     }
-
     a {
         color: #4fc3f7;
         text-decoration: none;
@@ -98,10 +104,10 @@ $tutorials = $adminObj->getAllTutorials();
                 <td><?php echo htmlspecialchars($user['name']); ?></td>
                 <td><?php echo htmlspecialchars($user['email']); ?></td>
                 <td><?php echo htmlspecialchars($user['role']); ?></td>
-                <td><a href="edit_user.php?id=<?php echo $user['user_id']; ?>">Edit</a></td>
+                <td><a href="delete_user.php?id=<?php echo $user['user_id']; ?>">Delete</a></td>
             </tr>
         <?php endforeach; ?>
-    </table>
+    <table border="1">
     <h2>Tutorials</h2>
     <table border="1">
         <tr>
