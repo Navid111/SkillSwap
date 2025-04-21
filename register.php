@@ -36,28 +36,28 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            --primary: #2196F3;
-            --primary-dark: #1976D2;
-            --accent: #03A9F4;
-            --text: #333333;
-            --text-light: #757575;
-            --bg-light: #FFFFFF;
-            --error: #F44336;
+            --primary: #395b90;
+            --primary-dark: #395b90;
+            --accent: #395b90;
+            --text: #395b90;
+            --text-light: #395b90;
+            --bg-light: black;
+            --error: #395b90;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Georgia, serif;
         }
 
-        body {
+        body { background-image: url('image2.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #f0f2f5;
+            background-color: #395b90;
             overflow: hidden;
         }
 
@@ -65,7 +65,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             display: flex;
             width: 900px;
             height: 600px;
-            background: white;
+            background: rgba(0, 0, 0, 0.90);
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             overflow: hidden;
@@ -73,12 +73,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         .illustration-side {
             width: 45%;
-            background: linear-gradient(135deg, #0288D1, #03A9F4);
+            background: linear-gradient(135deg, #395b90, #395b90);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: black;
             padding: 40px;
             position: relative;
             overflow: hidden;
@@ -135,7 +135,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         }
 
         .social-icon i {
-            color: white;
+            color: black;
             font-size: 18px;
         }
 
@@ -145,6 +145,28 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             display: flex;
             flex-direction: column;
         }
+
+        
+.form-links {
+  display: flex;
+  gap: 10px;
+}
+
+/* Base link styles (unvisited & visited) */
+.form-links a:link,
+.form-links a:visited {
+  color: var(--primary);
+  text-decoration: none !important;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+/* Hover & active states */
+.form-links a:hover,
+.form-links a:active {
+  color: var(--primary-dark);
+}
+
 
         .form-header {
             display: flex;
@@ -191,7 +213,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         .form-group input,
         .form-group select {
             padding: 12px 16px;
-            border: 1px solid #e0e0e0;
+            border: 1px solid #395b90;
             border-radius: 8px;
             font-size: 15px;
             transition: border 0.3s ease;
@@ -211,7 +233,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         .submit-btn {
             background-color: var(--primary);
-            color: white;
+            color: black;
             border: none;
             padding: 14px;
             border-radius: 8px;
@@ -248,12 +270,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         }
     </style>
 </head>
-<body>
+<body style="background-image: url('images/image3.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
     <div class="auth-container">
         <div class="illustration-side">
             <div class="night-scene"></div>
             <div class="welcome-content">
-                <h2>Welcome To Our Skill Swap</h2>
+                <h2>Welcome To Skill Swap!</h2>
                 <p></p>
             </div>
         </div>
@@ -261,9 +283,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         <div class="form-side">
             <div class="form-header">
                 <h1>Register</h1>
+            <div class="form-links">
+                <a href="index.php" class="sing-in-link">Home</a>
                 <a href="login.php" class="sign-in-link">Sign In</a>
-            </div>
-            
+        </div>
+    </div>
             <?php if($error): ?>
                 <p class="error-message"><?php echo $error; ?></p>
             <?php endif; ?>

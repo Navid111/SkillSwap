@@ -34,10 +34,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <title>Login - Tutorial Platform</title>
     <style>
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Georgia', serif; /* Updated to Georgia */
         }
 
         body {
@@ -45,7 +45,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #f5f5f5;
+            background-color: #395b90;
         }
 
         .login-container {
@@ -61,7 +61,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         .form-side {
             width: 60%;
             padding: 40px;
-            background-color: white;
+            background-color: rgba(0, 0, 0, 0.95);
             display: flex;
             flex-direction: column;
         }
@@ -69,7 +69,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         .login-title {
             font-size: 28px;
             font-weight: 600;
-            color: #333;
+            color: #395b90;
             margin-bottom: 30px;
             text-align: center;
         }
@@ -82,32 +82,32 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             display: block;
             font-size: 16px;
             font-weight: 500;
-            color: #333;
+            color: #395b90;
             margin-bottom: 10px;
         }
 
         .form-input {
-            width: 100%;
-            padding: 14px 18px;
-            border: 1px solid #ddd;
-            background-color: #f9f9f9;
-            border-radius: 6px;
-            font-size: 16px;
-            color: #333;
-            transition: border-color 0.3s, background-color 0.3s;
-        }
+        width: 100%;
+        padding: 14px 18px;
+        border: 1px solid #ddd;
+        background-color: white; /* changed to white */
+        border-radius: 6px;
+        font-size: 16px;
+        color: black; /* changed to black for better contrast */
+        transition: border-color 0.3s, background-color 0.3s;
+    }
 
-        .form-input:focus {
-            outline: none;
-            border-color: #2196F3;
-            background-color: #fff;
-        }
+    .form-input:focus {
+        outline: none;
+        border-color: #395b90;
+        background-color: #f9f9f9;
+    }
 
         .login-btn {
             width: 100%;
             padding: 16px;
-            background-color: #2196F3;
-            color: white;
+            background-color: #395b90;
+            color: black;
             border: none;
             border-radius: 6px;
             font-size: 18px;
@@ -118,7 +118,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         }
 
         .login-btn:hover {
-            background-color: #1976D2;
+            background-color: #395b90;
         }
 
         .form-footer {
@@ -142,8 +142,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         .welcome-side {
             width: 40%;
-            background-color: #2196F3;
-            color: white;
+            background-color: rgba(57, 91, 144, 0.95);
+            color: black;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -151,6 +151,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             text-align: center;
             padding: 40px;
         }
+
 
         .welcome-title {
             font-size: 32px;
@@ -165,22 +166,37 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         }
 
         .signup-btn {
-            padding: 14px 30px;
-            background-color: transparent;
-            color: white;
-            border: 2px solid white;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-        }
+        padding: 14px 30px;
+        background-color: white; /* changed to white */
+        color: black;
+        border: 2px solid black;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-decoration: none;
+    }
 
-        .signup-btn:hover {
-            background-color: white;
-            color: #2196F3;
-        }
+    .home-link {
+  display: block;             /* ensure it appears on its own line */
+  margin-top: 15px;           /* space it from the Sign Up button */
+  color: black;              /* plain black text */
+  text-decoration: none;     /* no underline */
+  font-size: 16px;           /* same font size as other text */
+  font-weight: 500;          /* consistent font weight */
+  text-align: center;        /* center under the button */
+  transition: color 0.3s;
+}
+
+.home-link:hover {
+  color: #222;               /* a darker shade of black when hovered */
+}
+
+    .signup-btn:hover {
+        background-color: black;
+        color: white;
+    }
 
         @media (max-width: 768px) {
             .login-container {
@@ -208,11 +224,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         }
     </style>
 </head>
-<body>
+<body style="background-image: url('images/image3.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
     <div class="login-container">
         <!-- Left side with form -->
         <div class="form-side">
-            <h1 class="login-title">Login In</h1>
+            <h1 class="login-title">Log In</h1>
             
             <?php if($error): ?>
                 <div class="error-message"><?php echo $error; ?></div>
@@ -229,7 +245,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
                 </div>
                 
-                <button type="submit" class="login-btn">Login In</button>
+                <button type="submit" class="login-btn">Log In</button>
                 
                 <div class="form-footer">
                     <div class="remember-me">
@@ -245,6 +261,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <h2 class="welcome-title">Welcome Back</h2>
             <p class="welcome-text">Don't have an account yet?</p>
             <a href="register.php" class="signup-btn">Sign Up</a>
+            <a href="index.php" class="home-link">Home</a>
         </div>
     </div>
 </body>
