@@ -137,10 +137,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         }
         
         .tutorial-content {
+			word-wrap: break-word;   /* Breaks long words */
+			overflow-wrap: break-word; /* Handles overflow in modern browsers */
+			white-space: normal;     /* Allows text to wrap */
             padding: 30px;
             border-bottom: 1px solid var(--border-color);
         }
-        
+
 		.message {
 			padding: 10px;
 			margin-bottom: 20px;

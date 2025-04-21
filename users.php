@@ -210,6 +210,9 @@ $otherTutorials = array_filter($allTutorials, function($tutorial) {
         height: 100%;
         display: flex;
         flex-direction: column;
+		word-wrap: break-word;   /* Breaks long words */
+		overflow-wrap: break-word; /* Handles overflow in modern browsers */
+		white-space: normal;     /* Allows text to wrap */
     }
 
     .tutorial-card:hover {
@@ -330,4 +333,10 @@ $otherTutorials = array_filter($allTutorials, function($tutorial) {
             grid-template-columns: 1fr;
         }
     }
+	footer {
+		background-color: rgba(0, 0, 0, 0.8);
+		text-align: center;
+		padding: 10px;
+		color: #fff;
+	}
 </style>

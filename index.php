@@ -313,6 +313,9 @@ $categoryCount = 8; // Placeholder value
             flex-grow: 1;
             display: flex;
             flex-direction: column;
+			word-wrap: break-word;   /* Breaks long words */
+			overflow-wrap: break-word; /* Handles overflow in modern browsers */
+			white-space: normal;     /* Allows text to wrap */		
         }
 
         .tutorial-title {
@@ -334,7 +337,7 @@ $categoryCount = 8; // Placeholder value
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            flex-grow: 1;
+            flex-grow: 1;	
         }
 
         .tutorial-meta {
