@@ -69,7 +69,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         .login-title {
             font-size: 28px;
             font-weight: 600;
-            color: #395b90;
+            color: #ffffff;
             margin-bottom: 30px;
             text-align: center;
         }
@@ -82,7 +82,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             display: block;
             font-size: 16px;
             font-weight: 500;
-            color: #395b90;
+            color: #ffffff;
             margin-bottom: 10px;
         }
 
@@ -190,7 +190,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
 
 .home-link:hover {
-  color: #222;               /* a darker shade of black when hovered */
+  color: #ffffff;               /* a darker shade of black when hovered */
 }
 
     .signup-btn:hover {

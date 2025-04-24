@@ -39,10 +39,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             --primary: #395b90;
             --primary-dark: #395b90;
             --accent: #395b90;
-            --text: #395b90;
+            --text: #ffffff;
             --text-light: #395b90;
             --bg-light: black;
-            --error: #395b90;
+            --error: #ffffff;
         }
 
         * {
@@ -102,7 +102,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         }
 
         .welcome-content h2 {
-            font-size: 28px;
+            font-size: 38px;
             margin-bottom: 20px;
         }
 
@@ -155,7 +155,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 /* Base link styles (unvisited & visited) */
 .form-links a:link,
 .form-links a:visited {
-  color: var(--primary);
+  color: var(--text);
   text-decoration: none !important;
   font-weight: 500;
   transition: color 0.3s ease;
@@ -182,7 +182,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         }
 
         .sign-in-link {
-            color: var(--primary);
+            color: var(--text);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
@@ -206,7 +206,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         .form-group label {
             margin-bottom: 6px;
             font-size: 14px;
-            color: var(--text-light);
+            color: var(--text);
             font-weight: 500;
         }
 
@@ -233,7 +233,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         .submit-btn {
             background-color: var(--primary);
-            color: black;
+            color: #ffffff;
             border: none;
             padding: 14px;
             border-radius: 8px;
@@ -275,7 +275,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         <div class="illustration-side">
             <div class="night-scene"></div>
             <div class="welcome-content">
-                <h2>Welcome To Skill Swap!</h2>
+                <h2>WELCOME<br/>TO<br/>SKILL-SWAP!</h2>
                 <p></p>
             </div>
         </div>
@@ -285,6 +285,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <h1>Register</h1>
             <div class="form-links">
                 <a href="index.php" class="sing-in-link">Home</a>
+				<br/>
                 <a href="login.php" class="sign-in-link">Sign In</a>
         </div>
     </div>
