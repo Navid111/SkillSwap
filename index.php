@@ -24,12 +24,12 @@ $categoryCount = 8; // Placeholder value
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skill-Swap Tutorials</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         /* Material Design Inspired Styles */
         :root {
-            --primary: #1a73e8;
+            --primary: #395b90;
             --primary-light: #e8f0fe;
             --primary-dark: #174ea6;
             --secondary: #34a853;
@@ -55,7 +55,7 @@ $categoryCount = 8; // Placeholder value
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: Georgia, serif;
             color: var(--on-background);
             background-color: var(--background);
             line-height: 1.5;
