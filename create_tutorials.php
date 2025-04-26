@@ -27,27 +27,57 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 <?php include 'includes/header.php'; ?>
 
-<main>
-    <h1>Create Tutorial</h1>
-    <?php if($error): ?>
-        <p class="error"><?php echo $error; ?></p>
-    <?php endif; ?>
-    <form action="create_tutorials.php" method="POST">
-        <div class="form-group">
-            <label>Title:</label>
-            <input type="text" name="title" required>
+<div class="page-container">
+    <main class="form-container">
+        <div class="form-header">
+            <h1>Create Tutorial</h1>
+            <div class="underline"></div>
         </div>
-        <div class="form-group">
-            <label>Description:</label>
-            <textarea name="description" rows="5" required></textarea>
-        </div>
-        <button type="submit">Create Tutorial</button>
-    </form>
-</main>
+        
+        <?php if($error): ?>
+            <div class="error-container">
+                <p class="error"><?php echo $error; ?></p>
+            </div>
+        <?php endif; ?>
+        
+        <form action="create_tutorials.php" method="POST">
+            <div class="form-group">
+                <label for="title">Tutorial Title</label>
+                <input type="text" name="title" id="title" required placeholder="Enter tutorial title">
+                <div class="focus-border"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Tutorial Description</label>
+                <textarea name="description" id="description" rows="5" required placeholder="Enter detailed description of your tutorial"></textarea>
+                <div class="focus-border"></div>
+            </div>
+            
+            <div class="button-container">
+                <button type="submit">Create Tutorial</button>
+            </div>
+        </form>
+    </main>
+</div>
 
 <?php include 'includes/footer.php'; ?>
 
 <style>
+    :root {
+        --primary-color: #395b90;
+        --accent-color:rgb(28, 135, 235);
+        --text-color: #333;
+        --light-text: #666;
+        --lightest-text: #999;
+        --error-color: #d9534f;
+        --success-color: #5cb85c;
+        --border-color: #e0e0e0;
+        --bg-color: #f8f9fa;
+        --card-bg: #ffffff;
+        --shadow-color: rgba(0, 0, 0, 0.05);
+        --transition: all 0.3s ease;
+    }
+
     * {
         box-sizing: border-box;
         margin: 0;
@@ -56,334 +86,136 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     html, body {
         height: 100%;
-        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-        color: #fff;
-        scroll-behavior: smooth;
+        font-family: Georgia, serif;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+        line-height: 1.6;
     }
 
-    .background-container {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        filter: brightness(0.8) contrast(1.2);
-    }
-
-    .background-layer {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-position: center;
-        opacity: 0;
-        animation: slideShow 25s infinite;
-        filter: blur(2px);
-    }
-
-    @keyframes slideShow {
-        0% { opacity: 0; }
-        25% { opacity: 1; }
-        50% { opacity: 0; }
-        75% { opacity: 1; }
-        100% { opacity: 0; }
-    }
-
-    .background-layer:nth-child(1) {
-        background-image: url('images/pexels-dani.jpg');
-        animation-delay: 0s;
-    }
-    .background-layer:nth-child(2) {
-        background-image: url('images/pexels-katl.jpg');
-        animation-delay: 8s;
-    }
-    .background-layer:nth-child(3) {
-        background-image: url('images/pexels-nic.jpg');
-        animation-delay: 16s;
-    }
-
-    main {
-        background: transparent;  /* Remove white background */
-        backdrop-filter: blur(12px);  /* Retain the blur effect */
-        padding: 2.5rem;
-        border-radius: 20px;
-        max-width: 800px;
-        margin: 3rem auto;
-        box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-    }
-
-    .form-group {
-        margin-bottom: 1.5rem;
-    }
-
-    label {
-        display: block;
-        margin-bottom: 0.5rem;
-        color: #4CAF50;
-        font-weight: 500;
-    }
-
-    input, textarea {
-        width: 100%;
-        padding: 1rem;
-        background: rgba(39, 3, 3, 0.1);
-        border: 1px solid rgba(59, 4, 4, 0.2);
-        border-radius: 8px;
-        color: #fff;
-        font-size: 1rem;
-        transition: all 0.3s ease;
-    }
-
-    input:focus, textarea:focus {
-        outline: none;
-        border-color:rgb(218, 179, 9);
-        box-shadow: 0 0 12px rgba(230, 140, 6, 0.3);
-    }
-
-    button[type="submit"] {
-        width: 100%;
-        padding: 1.2rem;
-        background: linear-gradient(135deg,rgb(243, 179, 3),rgb(235, 156, 9));
-        border: none;
-        border-radius: 8px;
-        color: white;
-        font-weight: 600;
-        cursor: pointer;
-        transition: transform 0.3s ease;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    button[type="submit"]:hover {
-        transform: translateY(-2px);
-    }
-
-    .error {
-        color: #ff4444;
-        background: rgba(255, 68, 68, 0.1);
-        padding: 1rem;
-        border-radius: 8px;
-        border: 1px solid #ff4444;
-        margin-bottom: 1.5rem;
-        text-align: center;
-    }
-
-    h1 {
-        text-align: center;
-        margin-bottom: 2rem;
-        font-size: 2.5rem;
-        background: linear-gradient(45deg, #4CAF50, #8BC34A);
-        -webkit-background-clip: text; 
-        -webkit-text-fill-color: transparent;
-    }
-</style>
-
-<div class="background-container">
-    <div class="background-layer"></div>
-    <div class="background-layer"></div>
-    <div class="background-layer"></div>
-</div>
-
-
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: Arial, sans-serif;
-        color: #fff;
+    .page-container {
         min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        margin: 0;
-    }
-
-    .background-image {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: url('images/pexels.jpg') no-repeat center center/cover;
-        filter: brightness(0.5);
-        z-index: -1;
-    }
-
-    main {
-        flex: 1;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 20px;
+        padding: 2rem;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+		background: url('images/image4.jpg') no-repeat center center fixed;
+		background-size: cover;
     }
 
-    .tutorial-container {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: rgba(0, 0, 0, 0.7); /* Dark transparent background */
-        padding: 30px;
-        border-radius: 15px;
-        box-shadow: 0 0 15px rgba(76, 33, 231, 0.5);
-        width: 350px;
-    }
-
-    h1 {
-        text-align: center;
-        margin-bottom: 20px;
-        color: orange;
-    }
-
-    .error-msg {
-        color: red;
-        text-align: center;
-        margin-bottom: 10px;
-    }
-
-    form input, form textarea {
-        width: 100%;
-        padding: 10px;
-        margin: 10px 0;
-        border: none;
-        border-radius: 8px;
-    }
-
-    form button {
-        width: 100%;
-        padding: 10px;
-        background-color: orange;
-        color: white;
-        border: none;
-        cursor: pointer;
-        border-radius: 8px;
-        font-size: 18px;
-    }
-
-    form button:hover {
-        background-color: darkorange;
-    }
-
-    .signup {
-        text-align: center;
-        margin-top: 15px;
-    }
-
-    .signup a {
-        color: orange;
-        text-decoration: none;
-    }
-
-    .signup a:hover {
-        text-decoration: underline;
-    }
-
-    footer {
-        background-color: rgba(0, 0, 0, 0.8);
-        text-align: center;
-        padding: 10px;
-        color: #fff;
-    }
-</style>
-
-
-
-
-<style>
-    /* Updated form container styles */
-    main {
-        background: rgba(0, 0, 0, 0.25);
-        backdrop-filter: blur(16px);
+    .form-container {
+        background: var(--card-bg);
         padding: 2.5rem;
-        border-radius: 20px;
-        max-width: 800px;
-        margin: 3rem auto;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 16px;
+        width: 100%;
+        max-width: 700px;
+        box-shadow: 0 15px 35px var(--shadow-color), 0 5px 15px var(--shadow-color);
+        transform: translateY(0);
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .form-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px var(--shadow-color), 0 10px 20px var(--shadow-color);
+    }
+
+    .form-header {
+        text-align: center;
+        margin-bottom: 2rem;
         position: relative;
-        overflow: hidden;
     }
 
-    main::before {
-        content: '';
-        position: absolute;
-        top: -2px;
-        left: -2px;
-        right: -2px;
-        bottom: -2px;
-        background: linear-gradient(45deg, 
-            rgba(76, 175, 80, 0.4),
-            rgba(255, 193, 7, 0.4),
-            rgba(255, 87, 34, 0.4));
-        z-index: -1;
-        animation: animateGlow 6s linear infinite;
-        background-size: 400%;
+    .form-header h1 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
     }
 
-    @keyframes animateGlow {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
+    .underline {
+        height: 4px;
+        width: 70px;
+        background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+        margin: 0 auto;
+        border-radius: 2px;
     }
 
-    /* Updated form element styles */
     .form-group {
         margin-bottom: 1.8rem;
+        position: relative;
     }
 
     label {
         display: block;
         margin-bottom: 0.8rem;
-        color: #FFD700;
+        color: var(--light-text);
         font-weight: 500;
-        font-size: 1rem;
-        letter-spacing: 0.5px;
+        font-size: 0.95rem;
+        transition: var(--transition);
     }
 
     input, textarea {
         width: 100%;
-        padding: 1.2rem;
-        background: rgba(255, 255, 255, 0.08);
-        border: 2px solid rgba(255, 215, 0, 0.3);
-        border-radius: 10px;
-        color: #fff;
+        padding: 1rem 1.2rem;
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        color: var(--text-color);
         font-size: 1rem;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: var(--transition);
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    input::placeholder, textarea::placeholder {
+        color: var(--lightest-text);
+        opacity: 0.7;
     }
 
     input:focus, textarea:focus {
         outline: none;
-        border-color: #4CAF50;
-        box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
-        background: rgba(255, 255, 255, 0.12);
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 3px rgba(111, 168, 220, 0.2);
+    }
+
+    .focus-border {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+        transition: 0.4s;
+    }
+
+    input:focus ~ .focus-border,
+    textarea:focus ~ .focus-border {
+        width: 100%;
+        left: 0;
+    }
+
+    .button-container {
+        margin-top: 2.5rem;
     }
 
     button[type="submit"] {
         width: 100%;
-        padding: 1.3rem;
-        background: linear-gradient(135deg, 
-            rgba(76, 175, 80, 0.9) 0%, 
-            rgba(255, 193, 7, 0.9) 100%);
+        padding: 1rem;
+        background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
         border: none;
-        border-radius: 10px;
+        border-radius: 8px;
         color: white;
         font-weight: 600;
+        font-size: 1.1rem;
         cursor: pointer;
-        transition: all 0.3s ease;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        backdrop-filter: blur(4px);
+        transition: var(--transition);
+        box-shadow: 0 4px 10px rgba(58, 110, 165, 0.3);
         position: relative;
         overflow: hidden;
     }
 
     button[type="submit"]:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(58, 110, 165, 0.4);
     }
 
     button[type="submit"]::after {
@@ -393,12 +225,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(255, 255, 255, 0.2),
-            transparent
-        );
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
         transition: 0.5s;
     }
 
@@ -406,25 +233,82 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         left: 100%;
     }
 
-    .error {
-        color: #ff4444;
-        background: rgba(255, 68, 68, 0.15);
-        padding: 1.2rem;
-        border-radius: 10px;
-        border: 1px solid #ff4444;
+    .error-container {
         margin-bottom: 2rem;
-        text-align: center;
-        font-size: 0.95rem;
-        backdrop-filter: blur(4px);
     }
 
-    h1 {
-        text-align: center;
-        margin-bottom: 2.5rem;
-        font-size: 2.8rem;
-        background: linear-gradient(45deg, #FFD700, #4CAF50);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    .error {
+        color: var(--error-color);
+        background: rgba(217, 83, 79, 0.1);
+        padding: 1rem;
+        border-radius: 8px;
+        border-left: 4px solid var(--error-color);
+        font-size: 0.95rem;
+        text-align: left;
     }
+
+    /* Optional: Add a subtle animation for form elements */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .form-group {
+        animation: fadeIn 0.5s ease forwards;
+    }
+
+    .form-group:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .form-group:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .button-container {
+        animation: fadeIn 0.5s ease forwards;
+        animation-delay: 0.3s;
+    }
+
+    /* Add subtle hover effect to inputs */
+    input:hover, textarea:hover {
+        border-color: #c1d3e8;
+    }
+
+    /* Add responsive adjustments */
+    @media (max-width: 768px) {
+        .form-container {
+            padding: 2rem;
+        }
+        
+        .form-header h1 {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .page-container {
+            padding: 1rem;
+        }
+        
+        .form-container {
+            padding: 1.5rem;
+        }
+        
+        .form-header h1 {
+            font-size: 1.8rem;
+        }
+    }
+	footer {
+		background-color: black;
+		text-align: center;
+		padding: 5px;
+		color: #fff;
+	}
 </style>

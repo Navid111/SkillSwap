@@ -15,6 +15,7 @@ $tutorialObj = new Tutorial($db);
 
 $userProfile = $userObj->getProfile($_SESSION['user_id']);
 $selfTutorials = $tutorialObj->getTutorialsByUser($_SESSION['user_id']);
+
 $allTutorials = $tutorialObj->getAllTutorials();
 $otherTutorials = array_filter($allTutorials, function($tutorial) {
     return $tutorial['user_id'] != $_SESSION['user_id'];
@@ -22,76 +23,317 @@ $otherTutorials = array_filter($allTutorials, function($tutorial) {
 ?>
 
 <?php include 'includes/header.php'; ?>
-<main>
-    <h1>My Account</h1>
-    <div class="profile">
-        <p><strong>Name:</strong> <?php echo htmlspecialchars($userProfile['name']); ?></p>
-        <p><strong>Email:</strong> <?php echo htmlspecialchars($userProfile['email']); ?></p>
-		<p><strong>Role:</strong> <?php echo htmlspecialchars($userProfile['role']); ?></p>
-    </div>
-
-    <h2>My Tutorials</h2>
-    <a href="create_tutorials.php" class="btn">Create New Tutorial</a>
-    <?php if(count($selfTutorials) > 0): ?>
-        <?php foreach($selfTutorials as $tutorial): ?>
-            <div class="tutorial">
-                <h3><?php echo htmlspecialchars($tutorial['title']); ?></h3>
-                <p><?php echo htmlspecialchars($tutorial['description']); ?></p>
-                <div class="tutorial-actions">
-                    <a href="view_tutorial.php?tutorial_id=<?php echo $tutorial['tutorial_id']; ?>" class="btn">View</a>
-                    <a href="edit_tutorials.php?tutorial_id=<?php echo $tutorial['tutorial_id']; ?>" class="btn">Edit</a>
-                    <a href="delete_tutorial.php?tutorial_id=<?php echo $tutorial['tutorial_id']; ?>" class="btn delete" onclick="return confirm('Are you sure?')">Delete</a>
-                </div>
+<main class="container">
+    <section class="profile-section">
+        <h1 class="page-title">My Account</h1>
+        <div class="profile-card">
+            <h2>Profile Information</h2>
+            <div class="profile-info">
+                <p><span class="label">Name:</span> <?php echo htmlspecialchars($userProfile['name']); ?></p>
+                <p><span class="label">Email:</span> <?php echo htmlspecialchars($userProfile['email']); ?></p>
+                <p><span class="label">Role:</span> <?php echo htmlspecialchars($userProfile['role']); ?></p>
             </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p>You have not created any tutorials yet.</p>
-    <?php endif; ?>
+        </div>
+    </section>
 
-    <h2>Other Tutorials</h2>
-    <?php if(count($otherTutorials) > 0): ?>
-        <?php foreach($otherTutorials as $tutorial): ?>
-            <div class="tutorial">
-                <h3><?php echo htmlspecialchars($tutorial['title']); ?></h3>
-                <p><?php echo htmlspecialchars($tutorial['description']); ?></p>
-                <p><strong>Author:</strong> <?php echo htmlspecialchars($tutorial['author']); ?></p>
-                <div class="tutorial-actions">
-                    <a href="view_tutorial.php?tutorial_id=<?php echo $tutorial['tutorial_id']; ?>" class="btn">View Details</a>
-                    <a href="chat.php?receiver_id=<?php echo $tutorial['user_id']; ?>" class="btn">Contact Author</a>
+    <section class="tutorials-section">
+        <div class="section-header">
+            <h2>My Tutorials</h2>
+            <a href="create_tutorials.php" class="btn btn-primary">Create New Tutorial</a>
+        </div>
+        
+        <div class="tutorials-grid">
+            <?php if(count($selfTutorials) > 0): ?>
+                <?php foreach($selfTutorials as $tutorial): ?>
+                    <div class="tutorial-card">
+                        <h3 class="tutorial-title"><?php echo htmlspecialchars($tutorial['title']); ?></h3>
+                        <p class="tutorial-description"><?php echo htmlspecialchars($tutorial['description']); ?></p>
+                        <div class="tutorial-actions">
+                            <a href="view_tutorial.php?tutorial_id=<?php echo $tutorial['tutorial_id']; ?>" class="btn btn-view">View</a>
+                            <a href="edit_tutorials.php?tutorial_id=<?php echo $tutorial['tutorial_id']; ?>" class="btn btn-edit">Edit</a>
+                            <a href="delete_tutorial.php?tutorial_id=<?php echo $tutorial['tutorial_id']; ?>" class="btn btn-delete" onclick="return confirm('Are you sure you want to delete this tutorial?')">Delete</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="empty-state">
+                    <p>You haven't created any tutorials yet.</p>
+                    <a href="create_tutorials.php" class="btn btn-primary">Get Started</a>
                 </div>
-            </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p>No tutorials available.</p>
-    <?php endif; ?>
+            <?php endif; ?>
+        </div>
+    </section>
+
+    <section class="tutorials-section">
+        <div class="section-header">
+            <h2>Explore Other Tutorials</h2>
+        </div>
+        
+        <div class="tutorials-grid">
+            <?php if(count($otherTutorials) > 0): ?>
+                <?php foreach($otherTutorials as $tutorial): ?>
+                    <div class="tutorial-card">
+                        <h3 class="tutorial-title"><?php echo htmlspecialchars($tutorial['title']); ?></h3>
+                        <p class="tutorial-description"><?php echo htmlspecialchars($tutorial['description']); ?></p>
+                        <p class="tutorial-author"><span class="label">By:</span> <?php echo htmlspecialchars($tutorial['author']); ?></p>
+                        <div class="tutorial-actions">
+                            <a href="view_tutorial.php?tutorial_id=<?php echo $tutorial['tutorial_id']; ?>" class="btn btn-view">View Details</a>
+                            <a href="chat.php?receiver_id=<?php echo $tutorial['user_id']; ?>" class="btn btn-contact">Contact Author</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="empty-state">
+                    <p>No other tutorials available at the moment.</p>
+                </div>
+            <?php endif; ?>
+        </div>
+    </section>
 </main>
+
 <?php include 'includes/footer.php'; ?>
 
 <style>
-    .tutorial-actions {
-        margin-top: 15px;
+    /* ----- Reset & Base Styles ----- */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
     }
-    
+
+    :root {
+        --primary: #3ca3f3;
+        --primary-dark: #2351a3;
+        --secondary: #5E81CC;
+        --accent: #6883BC;
+        --danger: #E63946;
+        --danger-dark: #c9323f;
+        --success: #4CAF50;
+        --success-dark: #43A047;
+        --text: #333;
+        --text-light: #666;
+        --bg-light:rgb(87, 120, 154);
+        --bg-dark: #343a40;
+        --card-bg: #fff;
+        --border: #dee2e6;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --radius: 8px;
+        --space-sm: 0.5rem;
+        --space: 1rem;
+        --space-md: 1.5rem;
+        --space-lg: 2rem;
+    }
+
+    body {
+        font-family: 'Georgia', serif;
+        line-height: 1.6;
+        color: var(--text);
+        background: url('images/image4.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    /* ----- Layout ----- */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--space-lg);
+    }
+
+
+    .page-title {
+        font-size: 2.2rem;
+        color: var(--primary);
+		text-shadow: -2px 4px 4px rgb(0, 0, 0);
+        margin-bottom: var(--space-lg);
+        text-align: center;
+        font-weight: 700;
+    }
+
+    section {
+        margin-bottom: var(--space-lg);
+    }
+
+    /* ----- Profile Section ----- */
+    .profile-card {
+        background-color: var(--card-bg);
+        border-radius: var(--radius);
+        padding: var(--space-lg);
+        box-shadow: var(--shadow);
+        margin-bottom: var(--space-lg);
+    }
+
+    .profile-card h2 {
+        color: #084a7c;
+        margin-bottom: var(--space-md);
+        padding-bottom: var(--space-sm);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .profile-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--space);
+    }
+
+    .label {
+        font-weight: 600;
+        color: black;
+    }
+
+    /* ----- Section Headers ----- */
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--space-md);
+        padding-bottom: var(--space-sm);
+        border-bottom: 2px solid var(--primary);
+    }
+
+    .section-header h2 {
+        color: var(--primary);
+		text-shadow: -2px 4px 4px rgb(0, 0, 0);
+        font-weight: 600;
+    }
+
+    /* ----- Tutorial Cards ----- */
+    .tutorials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: var(--space-md);
+    }
+
+    .tutorial-card {
+        background-color: var(--card-bg);
+        border-radius: var(--radius);
+        padding: var(--space-md);
+        box-shadow: var(--shadow);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+		word-wrap: break-word;   /* Breaks long words */
+		overflow-wrap: break-word; /* Handles overflow in modern browsers */
+		white-space: normal;     /* Allows text to wrap */
+    }
+
+    .tutorial-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .tutorial-title {
+        color: #084a7c;
+        margin-bottom: var(--space-sm);
+        font-size: 1.25rem;
+    }
+
+    .tutorial-description {
+        color: var(--text);
+        margin-bottom: var(--space);
+        flex-grow: 1;
+    }
+
+    .tutorial-author {
+        margin-bottom: var(--space);
+        font-size: 0.9rem;
+    }
+
+    /* ----- Buttons ----- */
+    .tutorial-actions {
+        display: flex;
+        gap: var(--space-sm);
+        margin-top: auto;
+        flex-wrap: wrap;
+    }
+
     .btn {
         display: inline-block;
-        padding: 8px 12px;
-        background: #4CAF50;
-        color: white;
+        padding: 0.6rem 1rem;
+        border-radius: var(--radius);
         text-decoration: none;
-        border-radius: 4px;
-        margin-right: 10px;
+        font-weight: 500;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border: none;
     }
-    
-    .btn:hover {
-        background: #45a049;
+
+    .btn-primary {
+        background-color: var(--primary-dark);
+        color: white;
     }
-    
-    .btn.delete {
-        background: #f44336;
+
+    .btn-primary:hover {
+        background-color: var(--primary);
     }
-    
-    .btn.delete:hover {
-        background: #d32f2f;
+
+    .btn-view {
+        background-color: var(--secondary);
+        color: white;
+    }
+
+    .btn-view:hover {
+        background-color: var(--accent);
+    }
+
+    .btn-edit {
+        background-color: var(--success);
+        color: white;
+    }
+
+    .btn-edit:hover {
+        background-color: var(--success-dark);
+    }
+
+    .btn-delete {
+        background-color: var(--danger);
+        color: white;
+    }
+
+    .btn-delete:hover {
+        background-color: var(--danger-dark);
+    }
+
+    .btn-contact {
+        background-color: var(--accent);
+        color: white;
+    }
+
+    .btn-contact:hover {
+        opacity: 0.9;
+    }
+
+    /* ----- Empty States ----- */
+    .empty-state {
+        background-color: var(--card-bg);
+        border-radius: var(--radius);
+        padding: var(--space-lg);
+        text-align: center;
+        grid-column: 1 / -1;
+        box-shadow: var(--shadow);
+    }
+
+    .empty-state p {
+        margin-bottom: var(--space);
+        color: var(--text-light);
+    }
+
+    /* ----- Responsive Adjustments ----- */
+    @media (max-width: 768px) {
+        .section-header {
+            flex-direction: column;
+            gap: var(--space-sm);
+            align-items: flex-start;
+        }
+        
+        .tutorials-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .profile-info {
+            grid-template-columns: 1fr;
+        }
     }
 	footer {
 		background-color: rgba(0, 0, 0, 0.8);
@@ -99,441 +341,4 @@ $otherTutorials = array_filter($allTutorials, function($tutorial) {
 		padding: 10px;
 		color: #fff;
 	}
-
-    body {
-        background-image: url('images/pexels-dani.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center;
-        font-family: Arial, sans-serif;
-        color: #fff; /* Makes text readable on dark backgrounds */
-    }
-
-    main {
-        background-color: rgba(0, 0, 0, 0.6); /* Optional: adds contrast for readability */
-        padding: 20px;
-        border-radius: 10px;
-        max-width: 1000px;
-        margin: 20px auto;
-    }
-
-    .tutorial-actions {
-        margin-top: 15px;
-    }
-    
-    .btn {
-        display: inline-block;
-        padding: 8px 12px;
-        background: #4CAF50;
-        color: white;
-        text-decoration: none;
-        border-radius: 4px;
-        margin-right: 10px;
-    }
-    
-    .btn:hover {
-        background: #45a049;
-    }
-    
-    .btn.delete {
-        background: #f44336;
-    }
-    
-    .btn.delete:hover {
-        background: #d32f2f;
-    }
-
-    footer {
-        background-color: rgba(0, 0, 0, 0.8);
-        text-align: center;
-        padding: 10px;
-        color: #fff;
-    }
-
-    body {
-    margin: 0;
-    padding: 0;
-    background: url('images/pexels-dani.jpg') no-repeat center center fixed;
-    background-size: cover;
-    font-family: Arial, sans-serif;
-    color: #fff;
-}
-
-
-
 </style>
-
-<style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-
-    html, body {
-        height: 100%;
-        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-        color: #ffffff;
-        scroll-behavior: smooth;
-    }
-
-    .background-container {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-    }
-
-    .background-layer {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-position: center;
-        opacity: 0;
-        animation: slideShow 30s infinite;
-    }
-
-    @keyframes slideShow {
-        0%, 100% { opacity: 0; }
-        10%, 90% { opacity: 1; }
-    }
-
-    .background-layer:nth-child(1) {
-        background-image: url('images/pexels-atypi.jpg');
-        animation-delay: 0s;
-    }
-    .background-layer:nth-child(2) {
-        background-image: url('images/pexels-katl.jpg');
-        animation-delay: 10s;
-    }
-    .background-layer:nth-child(3) {
-        background-image: url('images/pexels-nic.jpg');
-        animation-delay: 20s;
-    }
-
-    main {
-        background: linear-gradient(145deg, rgba(0,0,0,0.8), rgba(20,20,20,0.9));
-        backdrop-filter: blur(8px);
-        padding: 2rem;
-        border-radius: 16px;
-        max-width: 1200px;
-        margin: 2rem auto;
-        position: relative;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-        border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .btn {
-        display: inline-flex;
-        align-items: center;
-        padding: 0.8rem 1.5rem;
-        background: linear-gradient(135deg, #4CAF50, #45a049);
-        color: white;
-        text-decoration: none;
-        border-radius: 8px;
-        margin: 0.5rem;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        font-weight: 500;
-        letter-spacing: 0.5px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-
-    .btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-    }
-
-    .btn.delete {
-        background: linear-gradient(135deg, #f44336, #d32f2f);
-    }
-
-    footer {
-        background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(20,20,20,0.95));
-        text-align: center;
-        padding: 1.5rem;
-        color: #fff;
-        border-top: 1px solid rgba(255,255,255,0.1);
-        margin-top: 3rem;
-    }
-
-    h1, h2 {
-        text-align: center;
-        margin-bottom: 2rem;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    }
-
-    h1 {
-        font-size: 2.5rem;
-        letter-spacing: 1px;
-        background: linear-gradient(45deg, #4CAF50, #45a049);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    .profile, .tutorial {
-        background: rgba(255,255,255,0.05);
-        padding: 1.5rem;
-        margin-bottom: 1.5rem;
-        border-radius: 12px;
-        transition: transform 0.3s ease;
-        border: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .profile:hover, .tutorial:hover {
-        transform: translateY(-3px);
-        background: rgba(255,255,255,0.08);
-    }
-
-    .tutorial-actions {
-        margin-top: 1rem;
-        display: flex;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-    }
-
-    .section-header {
-        padding: 1rem;
-        border-radius: 8px;
-        margin-bottom: 2rem;
-        background: linear-gradient(90deg, rgba(76,175,80,0.15), rgba(76,175,80,0.05));
-        border-left: 4px solid #4CAF50;
-    }
-</style>
-<style>
-    /* Container for background slideshow */
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        color: #fff;
-        position: relative;
-        min-height: 100vh;
-        overflow-x: hidden;
-    }
-
-    /* Slideshow background wrapper */
-    body::before, body::after {
-        content: '';
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        animation: slideShow 30s infinite ease-in-out;
-        opacity: 0;
-        transition: opacity 1s ease-in-out;
-    }
-
-    body::before {
-        background-image: url('images/pexels-atypi.jpg');
-        animation-delay: 0s;
-    }
-
-    body::after {
-        background-image: url('images/pexels-katl.jpg');
-        animation-delay: 15s;
-    }
-
-    @keyframes slideShow {
-        0% { opacity: 1; }
-        45% { opacity: 1; }
-        50% { opacity: 0; }
-        95% { opacity: 0; }
-        100% { opacity: 1; }
-    }
-
-    /* Optional third layer with JS or static fallback */
-    main {
-        position: relative;
-        z-index: 1;
-        background-color: rgba(0, 0, 0, 0.6);
-        padding: 20px;
-        border-radius: 10px;
-        max-width: 1000px;
-        margin: 40px auto;
-    }
-
-    .btn {
-        display: inline-block;
-        padding: 8px 12px;
-        background: #4CAF50;
-        color: white;
-        text-decoration: none;
-        border-radius: 4px;
-        margin-right: 10px;
-    }
-
-    .btn:hover {
-        background: #45a049;
-    }
-
-    .btn.delete {
-        background: #f44336;
-    }
-
-    .btn.delete:hover {
-        background: #d32f2f;
-    }
-
-    .tutorial-actions {
-        margin-top: 15px;
-    }
-
-    footer {
-        background-color: rgba(0, 0, 0, 0.8);
-        text-align: center;
-        padding: 10px;
-        color: #fff;
-        position: relative;
-        z-index: 1;
-    }
-</style>
-
-<style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-
-    html, body {
-        height: 100%;
-        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-        color: #ffffff;
-        scroll-behavior: smooth;
-    }
-
-    .background-container {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-    }
-
-    .background-layer {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-position: center;
-        opacity: 0;
-        animation: slideShow 30s infinite;
-    }
-
-    @keyframes slideShow {
-        0%, 100% { opacity: 0; }
-        10%, 90% { opacity: 1; }
-    }
-
-    .background-layer:nth-child(1) {
-        background-image: url('images/pexels-atypi.jpg'); /* Ensure the path is correct */
-        animation-delay: 0s;
-    }
-    .background-layer:nth-child(2) {
-        background-image: url('images/pexels-katl.jpg'); /* Ensure the path is correct */
-        animation-delay: 10s;
-    }
-    .background-layer:nth-child(3) {
-        background-image: url('images/pexels-nic.jpg'); /* Ensure the path is correct */
-        animation-delay: 20s;
-    }
-
-    main {
-        background: linear-gradient(145deg, rgba(0,0,0,0.8), rgba(20,20,20,0.9));
-        backdrop-filter: blur(8px);
-        padding: 2rem;
-        border-radius: 16px;
-        max-width: 1200px;
-        margin: 2rem auto;
-        position: relative;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-        border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .btn {
-        display: inline-flex;
-        align-items: center;
-        padding: 0.8rem 1.5rem;
-        background: linear-gradient(135deg, #4CAF50, #45a049);
-        color: white;
-        text-decoration: none;
-        border-radius: 8px;
-        margin: 0.5rem;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        font-weight: 500;
-        letter-spacing: 0.5px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-
-    .btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-    }
-
-    .btn.delete {
-        background: linear-gradient(135deg, #f44336, #d32f2f);
-    }
-
-    footer {
-        background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(20,20,20,0.95));
-        text-align: center;
-        padding: 1.5rem;
-        color: #fff;
-        border-top: 1px solid rgba(255,255,255,0.1);
-        margin-top: 3rem;
-    }
-
-    h1, h2 {
-        text-align: center;
-        margin-bottom: 2rem;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    }
-
-    h1 {
-        font-size: 2.5rem;
-        letter-spacing: 1px;
-        background: linear-gradient(45deg, #4CAF50, #45a049);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    .profile, .tutorial {
-        background: rgba(255,255,255,0.05);
-        padding: 1.5rem;
-        margin-bottom: 1.5rem;
-        border-radius: 12px;
-        transition: transform 0.3s ease;
-        border: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .profile:hover, .tutorial:hover {
-        transform: translateY(-3px);
-        background: rgba(255,255,255,0.08);
-    }
-
-    .tutorial-actions {
-        margin-top: 1rem;
-        display: flex;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-    }
-
-    .section-header {
-        padding: 1rem;
-        border-radius: 8px;
-        margin-bottom: 2rem;
-        background: linear-gradient(90deg, rgba(76,175,80,0.15), rgba(76,175,80,0.05));
-        border-left: 4px solid #4CAF50;
-    }
-</style>
-
-<div class="background-container">
-    <div class="background-layer"></div>
-    <div class="background-layer"></div>
-    <div class="background-layer"></div>
-</div>
