@@ -64,11 +64,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tutorial View</title>
-    <style>
+    <style>  
         :root {
-            --primary-color: #395b90;
+            --primary-color:#395b90; 
             --accent-color: #4CAF50;
-            --bg-color: #f8f9fa;
+            --bg-color: #f8f9fa;   
             --card-bg: #ffffff;
             --text-color: #333;
             --light-text: #666;
@@ -80,7 +80,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: Georgia, serif;
+            font-family: 'Georgia', serif;
         }
         
         body {
@@ -122,7 +122,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		}
         
         .tutorial-header {
-            background: linear-gradient(135deg, var(--primary-color), #2a5a8d);
+            background: linear-gradient(135deg, var(--primary-color), #395b90);
             color: white;
             padding: 20px 30px;
         }
@@ -137,10 +137,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         }
         
         .tutorial-content {
+			word-wrap: break-word;   /* Breaks long words */
+			overflow-wrap: break-word; /* Handles overflow in modern browsers */
+			white-space: normal;     /* Allows text to wrap */
             padding: 30px;
             border-bottom: 1px solid var(--border-color);
         }
-        
+
 		.message {
 			padding: 10px;
 			margin-bottom: 20px;
