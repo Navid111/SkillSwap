@@ -21,11 +21,8 @@ $tutorials = $adminObj->getAllTutorials();
 <style>
     body {
         font-family: Georgia, serif;
-        background: #000000;
-        color: #fff;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-        margin: 0;
-        padding: 0;
+        background: url('images/image4.jpg') no-repeat center center fixed;
+        background-size: cover;
     }
 
     main {
@@ -36,6 +33,10 @@ $tutorials = $adminObj->getAllTutorials();
         text-align: center;
         color: #f0f0f0;
     }
+    
+    h1, h2, h3 {
+    text-shadow: -2px 4px 4px rgb(0, 0, 0);
+  }
 
     table {
         width: 90%;
@@ -45,39 +46,33 @@ $tutorials = $adminObj->getAllTutorials();
         box-shadow: 0 4px 8px rgba(0,0,0,0.5);
         border-radius: 8px;
         overflow: hidden;
-        table-layout: fixed; /* Important for wrapping */
-        word-wrap: break-word;		
     }
-	
+
     th, td {
         padding: 12px 15px;
         text-align: left;
-        vertical-align: top;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        white-space: normal;
-        max-width: 200px; /* Adjust as needed */
     }
 
     th {
-        background-color: #333333;
+        background-color:rgb(0, 0, 0);
         color: #ffffff;
     }
 
     tr:nth-child(even) {
-        background-color: #2e2e2e;
+        background-color:rgb(31, 31, 31);
     }
 
     tr:nth-child(odd) {
-        background-color: #3a3a3a;
+        background-color:rgb(44, 44, 44);
     }
 
     tr:hover {
         background-color: #555555;
         transition: 0.3s ease-in-out;
     }
+
     a {
-        color: #4fc3f7;
+        color: #395b90;
         text-decoration: none;
     }
 
@@ -104,10 +99,10 @@ $tutorials = $adminObj->getAllTutorials();
                 <td><?php echo htmlspecialchars($user['name']); ?></td>
                 <td><?php echo htmlspecialchars($user['email']); ?></td>
                 <td><?php echo htmlspecialchars($user['role']); ?></td>
-                <td><a href="delete_user.php?id=<?php echo $user['user_id']; ?>">Delete</a></td>
+                <td><a href="edit_user.php?id=<?php echo $user['user_id']; ?>">Edit</a></td>
             </tr>
         <?php endforeach; ?>
-    <table border="1">
+    </table>
     <h2>Tutorials</h2>
     <table border="1">
         <tr>

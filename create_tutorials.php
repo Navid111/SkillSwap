@@ -64,7 +64,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 <style>
     :root {
-        --primary-color: #3a6ea5;
+        --primary-color: #395b90;
         --accent-color:rgb(28, 135, 235);
         --text-color: #333;
         --light-text: #666;
@@ -86,7 +86,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     html, body {
         height: 100%;
-        font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
+        font-family: Georgia, serif;
         color: var(--text-color);
         background-color: var(--bg-color);
         line-height: 1.6;

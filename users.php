@@ -110,28 +110,38 @@ $otherTutorials = array_filter($allTutorials, function($tutorial) {
         --danger-dark: #c9323f;
         --success: #4CAF50;
         --success-dark: #43A047;
-        --text: #333;
-        --text-light: #666;
-        --bg-light: #f8f9fa;
-        --bg-dark: #343a40;
-        --card-bg: #fff;
-        --border: #dee2e6;
-        --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --text-light: #f5f5f5;
+        /* make all cards/boxes black now */
+        --card-bg: #000000;
+        --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         --radius: 8px;
-        --space-sm: 0.5rem;
-        --space: 1rem;
-        --space-md: 1.5rem;
-        --space-lg: 2rem;
+        --space-sm: 8px;
+        --space: 16px;
+        --space-md: 24px;
+        --space-lg: 32px;
     }
 
     body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+        font-family: Georgia, serif;
         line-height: 1.6;
         color: var(--text);
-        background-color: var(--bg-light);
-        padding: 0;
-        margin: 0;
+        background: url('images/image4.jpg') no-repeat center center fixed;
+        background-size: cover;
     }
+
+    h1, h2, h3, h4, h5, h6,
+  p, a, span, label, button {
+    font-family: inherit;
+  }
+
+  /* 4) Layout containers */
+  main {
+    padding: var(--space-lg);
+  }
+
+  h1, h2, h3 {
+    text-shadow: -2px 4px 4px rgb(0, 0, 0);
+  }
 
     /* ----- Layout ----- */
     .container {
@@ -210,10 +220,16 @@ $otherTutorials = array_filter($allTutorials, function($tutorial) {
         height: 100%;
         display: flex;
         flex-direction: column;
-		word-wrap: break-word;   /* Breaks long words */
-		overflow-wrap: break-word; /* Handles overflow in modern browsers */
-		white-space: normal;     /* Allows text to wrap */
     }
+
+    .tutorial-card p {
+    color: var(--text-light);
+  }
+
+  .profile-info p {
+    color: var(--text-light);
+  }
+
 
     .tutorial-card:hover {
         transform: translateY(-4px);
@@ -333,10 +349,4 @@ $otherTutorials = array_filter($allTutorials, function($tutorial) {
             grid-template-columns: 1fr;
         }
     }
-	footer {
-		background-color: rgba(0, 0, 0, 0.8);
-		text-align: center;
-		padding: 10px;
-		color: #fff;
-	}
 </style>

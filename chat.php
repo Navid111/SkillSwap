@@ -103,7 +103,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 <style>
 :root {
-    --primary-color: #1a73e8;
+    --primary-color: #395b90;
     --primary-dark: #0f5bcd;
     --secondary-color: #34a853;
     --accent-color: #4285f4;
@@ -126,7 +126,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Georgia, serif;
     background: linear-gradient(135deg, #f5f7fa 0%, #e4efe9 100%);
     margin: 0;
     padding: 0;

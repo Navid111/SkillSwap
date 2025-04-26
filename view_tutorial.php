@@ -66,7 +66,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <title>Tutorial View</title>
     <style>
         :root {
-            --primary-color: #3a6ea5;
+            --primary-color: #395b90;
             --accent-color: #4CAF50;
             --bg-color: #f8f9fa;
             --card-bg: #ffffff;
@@ -80,7 +80,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Georgia, serif;
         }
         
         body {
@@ -137,13 +137,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         }
         
         .tutorial-content {
-			word-wrap: break-word;   /* Breaks long words */
-			overflow-wrap: break-word; /* Handles overflow in modern browsers */
-			white-space: normal;     /* Allows text to wrap */
             padding: 30px;
             border-bottom: 1px solid var(--border-color);
         }
-
+        
 		.message {
 			padding: 10px;
 			margin-bottom: 20px;
