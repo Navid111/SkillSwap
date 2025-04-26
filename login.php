@@ -179,49 +179,49 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
 
     .home-link {
-  display: block;             /* ensure it appears on its own line */
-  margin-top: 15px;           /* space it from the Sign Up button */
-  color: black;              /* plain black text */
-  text-decoration: none;     /* no underline */
-  font-size: 16px;           /* same font size as other text */
-  font-weight: 500;          /* consistent font weight */
-  text-align: center;        /* center under the button */
-  transition: color 0.3s;
-}
+		display: block;             /* ensure it appears on its own line */
+		margin-top: 15px;           /* space it from the Sign Up button */
+		color: black;              /* plain black text */
+		text-decoration: none;     /* no underline */
+		font-size: 16px;           /* same font size as other text */
+		font-weight: 500;          /* consistent font weight */
+		text-align: center;        /* center under the button */
+		transition: color 0.3s;
+	}
 
-.home-link:hover {
-  color: #ffffff;               /* a darker shade of black when hovered */
-}
+	.home-link:hover {
+		color: #ffffff;               /* a darker shade of black when hovered */
+	}
 
     .signup-btn:hover {
         background-color: black;
         color: white;
     }
 
-        @media (max-width: 768px) {
-            .login-container {
-                flex-direction: column-reverse;
-            }
+    @media (max-width: 768px) {
+		.login-container {
+			flex-direction: column-reverse;
+		}
 
-            .form-side, .welcome-side {
-                width: 100%;
-            }
+		.form-side, .welcome-side {
+			width: 100%;
+		}
 
-            .welcome-side {
-                padding: 30px 20px;
-            }
+		.welcome-side {
+			adding: 30px 20px;
+		}
 
-            .form-side {
-                padding: 30px 20px;
-            }
-        }
-
-        .error-message {
-            color: red;
-            margin-bottom: 20px;
-            text-align: center;
-            font-weight: 500;
-        }
+		.form-side {
+			padding: 30px 20px;
+		}
+    }
+	
+    .error-message {
+        color: red;
+        margin-bottom: 20px;
+        text-align: center;
+        font-weight: 500;
+    }
     </style>
 </head>
 <body style="background-image: url('images/image3.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">

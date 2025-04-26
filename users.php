@@ -102,7 +102,7 @@ $otherTutorials = array_filter($allTutorials, function($tutorial) {
     }
 
     :root {
-        --primary: #395b90;
+        --primary: #3ca3f3;
         --primary-dark: #2351a3;
         --secondary: #5E81CC;
         --accent: #6883BC;
@@ -143,6 +143,7 @@ $otherTutorials = array_filter($allTutorials, function($tutorial) {
     .page-title {
         font-size: 2.2rem;
         color: var(--primary);
+		text-shadow: -2px 4px 4px rgb(0, 0, 0);
         margin-bottom: var(--space-lg);
         text-align: center;
         font-weight: 700;
@@ -162,7 +163,7 @@ $otherTutorials = array_filter($allTutorials, function($tutorial) {
     }
 
     .profile-card h2 {
-        color: var(--primary);
+        color: #084a7c;
         margin-bottom: var(--space-md);
         padding-bottom: var(--space-sm);
         border-bottom: 1px solid var(--border);
@@ -176,7 +177,7 @@ $otherTutorials = array_filter($allTutorials, function($tutorial) {
 
     .label {
         font-weight: 600;
-        color: var(--text-light);
+        color: black;
     }
 
     /* ----- Section Headers ----- */
@@ -191,6 +192,7 @@ $otherTutorials = array_filter($allTutorials, function($tutorial) {
 
     .section-header h2 {
         color: var(--primary);
+		text-shadow: -2px 4px 4px rgb(0, 0, 0);
         font-weight: 600;
     }
 
@@ -221,7 +223,7 @@ $otherTutorials = array_filter($allTutorials, function($tutorial) {
     }
 
     .tutorial-title {
-        color: var(--primary);
+        color: #084a7c;
         margin-bottom: var(--space-sm);
         font-size: 1.25rem;
     }
@@ -258,12 +260,12 @@ $otherTutorials = array_filter($allTutorials, function($tutorial) {
     }
 
     .btn-primary {
-        background-color: var(--primary);
+        background-color: var(--primary-dark);
         color: white;
     }
 
     .btn-primary:hover {
-        background-color: var(--primary-dark);
+        background-color: var(--primary);
     }
 
     .btn-view {

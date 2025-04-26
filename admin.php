@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 if(!isset($_SESSION['user_id']) || $_SESSION['user_role'] != 'admin'){
@@ -31,12 +30,9 @@ $tutorials = $adminObj->getAllTutorials();
 
     h1, h2 {
         text-align: center;
-        color: #f0f0f0;
+        color: #3ca3f3;
+		text-shadow: -2px 4px 4px rgb(0, 0, 0);
     }
-    
-    h1, h2, h3 {
-    text-shadow: -2px 4px 4px rgb(0, 0, 0);
-  }
 
     table {
         width: 90%;
@@ -46,38 +42,52 @@ $tutorials = $adminObj->getAllTutorials();
         box-shadow: 0 4px 8px rgba(0,0,0,0.5);
         border-radius: 8px;
         overflow: hidden;
+        table-layout: fixed; /* Important for wrapping */
+        word-wrap: break-word;		
     }
-
+	
     th, td {
         padding: 12px 15px;
         text-align: left;
+		color: #ffffff;
+        vertical-align: top;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+        max-width: 200px; /* Adjust as needed */
     }
 
     th {
-        background-color:rgb(0, 0, 0);
+        background-color: #333333;
         color: #ffffff;
     }
 
     tr:nth-child(even) {
-        background-color:rgb(31, 31, 31);
+        background-color: #2e2e2e;
     }
 
     tr:nth-child(odd) {
-        background-color:rgb(44, 44, 44);
+        background-color: #3a3a3a;
     }
 
     tr:hover {
         background-color: #555555;
         transition: 0.3s ease-in-out;
     }
-
     a {
-        color: #395b90;
+        color: #4fc3f7;
         text-decoration: none;
     }
 
     a:hover {
         text-decoration: underline;
+    }
+	footer {
+        background-color: black;
+        color: white;
+        text-align: center;
+        padding: 5px;
+        margin-top: 50px;
     }
 </style>
 
@@ -99,10 +109,10 @@ $tutorials = $adminObj->getAllTutorials();
                 <td><?php echo htmlspecialchars($user['name']); ?></td>
                 <td><?php echo htmlspecialchars($user['email']); ?></td>
                 <td><?php echo htmlspecialchars($user['role']); ?></td>
-                <td><a href="edit_user.php?id=<?php echo $user['user_id']; ?>">Edit</a></td>
+                <td><a href="delete_user.php?id=<?php echo $user['user_id']; ?>">Delete</a></td>
             </tr>
         <?php endforeach; ?>
-    </table>
+    <table border="1">
     <h2>Tutorials</h2>
     <table border="1">
         <tr>
@@ -127,3 +137,4 @@ $tutorials = $adminObj->getAllTutorials();
         <?php endforeach; ?>
 	</table>
 </main>
+<?php include 'includes/footer.php'; ?>

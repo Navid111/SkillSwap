@@ -87,6 +87,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             background: linear-gradient(to right, #f5f7fa, #e0f7fa);
             color: var(--text-color);
             line-height: 1.6;
+			background: url('images/image4.jpg') no-repeat center center fixed;
+			background-size: cover;
         }
         
         header {
@@ -292,10 +294,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         }
         
         footer {
-            background-color: #333;
+            background-color: black;
             color: white;
             text-align: center;
-            padding: 20px;
+            padding: 5px;
             margin-top: 50px;
         }
     </style>
@@ -349,26 +351,23 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <div class="comments-list">
                 <?php if(count($comments) > 0): ?>
                     <?php foreach($comments as $comment): ?>
-                        <div class="comment">
-                            <div class="comment-header">
-                                <span class="commenter"><?php echo htmlspecialchars($comment['username']); ?></span>
-                                <span class="comment-date"><?php echo htmlspecialchars($comment['created_at']); ?></span>
-                            </div>
-                            <div class="comment-body">
-                                <?php echo nl2br(htmlspecialchars($comment['comment'])); ?>
-                            </div>
+					<div class="comment">
+                        <div class="comment-header">
+                            <span class="commenter"><?php echo htmlspecialchars($comment['username']); ?></span>
+                            <span class="comment-date"><?php echo htmlspecialchars($comment['created_at']); ?></span>
                         </div>
+						<div class="comment-body">
+                            <?php echo nl2br(htmlspecialchars($comment['comment'])); ?>
+                        </div>
+                    </div>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <p>No comments yet. Be the first to comment!</p>
                 <?php endif; ?>
-            </div>
-        </div>
-    </div>
-</main>
-
-    <footer>
-        © DEV3 2025 Skill-Swap
-    </footer>
+			</div>
+		</div>
+	</div>
+	</main>
+	<?php include 'includes/footer.php'; ?>
 </body>
 </html>

@@ -112,33 +112,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             opacity: 0.9;
         }
 
-        .social-icons {
-            margin-top: 40px;
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .social-icon:hover {
-            background: rgba(255, 255, 255, 0.4);
-            transform: translateY(-3px);
-        }
-
-        .social-icon i {
-            color: black;
-            font-size: 18px;
-        }
-
         .form-side {
             width: 55%;
             padding: 40px;
@@ -147,25 +120,25 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         }
 
         
-.form-links {
-  display: flex;
-  gap: 10px;
-}
+		.form-links {
+			display: flex;
+			gap: 10px;
+		}
 
-/* Base link styles (unvisited & visited) */
-.form-links a:link,
-.form-links a:visited {
-  color: var(--text);
-  text-decoration: none !important;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
+		/* Base link styles (unvisited & visited) */
+		.form-links a:link,
+		.form-links a:visited {
+			color: var(--text);
+			text-decoration: none !important;
+			font-weight: 500;
+			transition: color 0.3s ease;
+		}
 
-/* Hover & active states */
-.form-links a:hover,
-.form-links a:active {
-  color: var(--primary-dark);
-}
+		/* Hover & active states */
+		.form-links a:hover,
+		.form-links a:active {
+		color: var(--primary-dark);
+		}
 
 
         .form-header {
@@ -268,7 +241,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 padding: 30px 20px;
             }
         }
-    </style>
+	</style>
 </head>
 <body style="background-image: url('images/image3.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
     <div class="auth-container">

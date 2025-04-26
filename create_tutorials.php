@@ -99,6 +99,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         align-items: center;
         padding: 2rem;
         background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+		background: url('images/image4.jpg') no-repeat center center fixed;
+		background-size: cover;
     }
 
     .form-container {
@@ -303,4 +305,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             font-size: 1.8rem;
         }
     }
+	footer {
+		background-color: black;
+		text-align: center;
+		padding: 5px;
+		color: #fff;
+	}
 </style>

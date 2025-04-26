@@ -100,7 +100,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
 
     body {
-        font-family: 'Segoe UI', Arial, sans-serif;
+		font-family: Georgia, serif;
         background-color: var(--bg-color);
         color: var(--text-color);
         line-height: 1.6;
@@ -113,8 +113,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(120deg, #e8f0fe, #bbdefb, #e3f2fd);
         z-index: -2;
+        background: url('images/image4.jpg') no-repeat center center fixed;
+        background-size: cover;
     }
 
     .blur-overlay {
@@ -282,5 +283,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             width: 100%;
 
         }
+    }
+	footer {
+        background-color: black;
+        color: white;
+        text-align: center;
+        padding: 5px;
+        margin-top: 50px;
     }
 </style>

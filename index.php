@@ -144,6 +144,7 @@ $categoryCount = 8; // Placeholder value
             padding: 48px 0;
             margin-bottom: 32px;
             text-align: center;
+			color: #3ca3f3;
         }
 
         .hero-title {

@@ -132,6 +132,8 @@ body {
     padding: 0;
     color: var(--text-primary);
     line-height: 1.6;
+    background: url('images/image4.jpg') no-repeat center center fixed;
+    background-size: cover;
 }
 
 main {
@@ -389,7 +391,7 @@ footer {
     background: linear-gradient(to right, #1a1a1a, #303030);
     color: white;
     text-align: center;
-    padding: 15px;
+    padding: 5px;
     margin-top: 40px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 0.9rem;
