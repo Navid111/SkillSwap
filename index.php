@@ -30,15 +30,15 @@ $categoryCount = 8; // Placeholder value
         /* Material Design Inspired Styles */
         :root {
             --primary: #395b90;
-            --primary-light: #e8f0fe;
-            --primary-dark: #174ea6;
+            --primary-light: #395b90;
+            --primary-dark:rgb(255, 255, 255);
             --secondary: #34a853;
             --error: #ea4335;
             --warning: #fbbc04;
-            --surface: #ffffff;
-            --background: #f8f9fa;
+            --surface:rgb(255, 255, 255);
+            --background:rgb(255, 255, 255);
             --on-primary: #ffffff;
-            --on-surface: #202124;
+            --on-surface:rgb(255, 255, 255);
             --on-background: #202124;
             --on-surface-medium: #5f6368;
             --elevation-1: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
@@ -57,8 +57,8 @@ $categoryCount = 8; // Placeholder value
         body {
             font-family: Georgia, serif;
             color: var(--on-background);
-            background-color: var(--background);
-            line-height: 1.5;
+            background: url('images/image2.jpg') no-repeat center center fixed;
+            background-size: cover;
         }
 
         .container {
@@ -405,35 +405,36 @@ $categoryCount = 8; // Placeholder value
         }
 
         /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 40px;
-        }
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 40px;
+}
 
-        .page-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: transparent;
-            color: var(--on-surface);
-            transition: var(--transition);
-            text-decoration: none;
-            font-size: 14px;
-        }
+.page-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    color: var(--on-surface);
+    transition: var(--transition);
+    text-decoration: none;
+    font-size: 14px;
+}
 
-        .page-btn:hover {
-            background-color: rgba(0, 0, 0, 0.04);
-        }
+.page-btn:hover {
+    background-color: #6883BC;
+    color: var(--on-primary);  /* keeps the text white on hover */
+}
 
-        .page-btn.active {
-            background-color: var(--primary);
-            color: var(--on-primary);
-        }
+.page-btn.active {
+    background-color: var(--primary);  /* #395b90 */
+    color: var(--on-primary);
+}
 
         /* Footer */
         footer {
@@ -571,7 +572,12 @@ $categoryCount = 8; // Placeholder value
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1 class="hero-title">Find the Perfect Tutorial to Learn New Skills</h1>
+        <h1 class="hero-title"
+    style="text-shadow: 1px 2px 2px rgb(0, 0, 0);">
+  Find the Perfect Tutorial to Learn New Skills
+</h1>
+
+            
             
             <div class="search-container">
                 <span class="material-icons search-icon">search</span>

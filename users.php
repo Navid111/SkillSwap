@@ -102,9 +102,9 @@ $otherTutorials = array_filter($allTutorials, function($tutorial) {
     }
 
     :root {
-        --primary: #3ca3f3;
-        --primary-dark: #2351a3;
-        --secondary: #5E81CC;
+        --primary:rgb(130, 170, 255);
+        --primary-dark: #395b90;
+        --secondary: #395b90;
         --accent: #6883BC;
         --danger: #E63946;
         --danger-dark: #c9323f;
@@ -143,7 +143,7 @@ $otherTutorials = array_filter($allTutorials, function($tutorial) {
     .page-title {
         font-size: 2.2rem;
         color: var(--primary);
-		text-shadow: -2px 4px 4px rgb(0, 0, 0);
+		text-shadow: 2px 3px 3px rgb(0, 0, 0);
         margin-bottom: var(--space-lg);
         text-align: center;
         font-weight: 700;
@@ -192,7 +192,7 @@ $otherTutorials = array_filter($allTutorials, function($tutorial) {
 
     .section-header h2 {
         color: var(--primary);
-		text-shadow: -2px 4px 4px rgb(0, 0, 0);
+		text-shadow: 2px 3px 3px rgb(0, 0, 0);
         font-weight: 600;
     }
 
