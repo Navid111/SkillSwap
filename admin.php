@@ -30,8 +30,8 @@ $tutorials = $adminObj->getAllTutorials();
 
     h1, h2 {
         text-align: center;
-        color: #3ca3f3;
-		text-shadow: -2px 4px 4px rgb(0, 0, 0);
+        color:rgb(255, 255, 255);
+		text-shadow: 2px 3px 3px rgb(0, 0, 0);
     }
 
     table {
@@ -75,7 +75,7 @@ $tutorials = $adminObj->getAllTutorials();
         transition: 0.3s ease-in-out;
     }
     a {
-        color: #4fc3f7;
+        color:rgb(255, 0, 0);
         text-decoration: none;
     }
 
@@ -92,16 +92,16 @@ $tutorials = $adminObj->getAllTutorials();
 </style>
 
 <main>
-    <h1>Admin Dashboard</h1>
+    <h1 style="color: rgb(130, 170, 255);">Admin Dashboard</h1>
 
-    <h2>Users</h2>
+    <h2 style="color: rgb(130, 170, 255);">Users</h2>
     <table border="1">
         <tr>
-            <th>User ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Action</th>
+        <th style="color:  #6883BC;">User ID</th>
+        <th style="color:  #6883BC;">Name</th>
+        <th style="color:  #6883BC;">Email</th>
+        <th style="color:  #6883BC">Role</th>
+        <th style="color:  #6883BC;">Action</th>
         </tr>
         <?php foreach($users as $user): ?>
             <tr>
@@ -113,15 +113,15 @@ $tutorials = $adminObj->getAllTutorials();
             </tr>
         <?php endforeach; ?>
     <table border="1">
-    <h2>Tutorials</h2>
+    <h2 style="color: rgb(130, 170, 255);">Tutorials</h2>
     <table border="1">
         <tr>
-            <th>Tutorial ID</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Author</th>
-            <th>Created At</th>
-            <th>Action</th>
+        <th style="color:  #6883BC;">Tutorial ID</th>
+        <th style="color:  #6883BC">Title</th>
+        <th style="color:  #6883BC;">Description</th>
+        <th style="color:  #6883BC;">Author</th>
+        <th style="color:  #6883BC;">Created At</th>
+        <th style="color:  #6883BC;">Action</th>
         </tr>
         <?php foreach($tutorials as $tutorial): ?>
             <tr>
