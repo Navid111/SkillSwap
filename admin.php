@@ -58,24 +58,24 @@ $tutorials = $adminObj->getAllTutorials();
     }
 
     th {
-        background-color: #333333;
+        background-color:rgb(255, 255, 255);
         color: #ffffff;
     }
 
     tr:nth-child(even) {
-        background-color: #2e2e2e;
+        background-color: #395b90;
     }
 
     tr:nth-child(odd) {
-        background-color: #3a3a3a;
+        background-color:rgb(92, 119, 155);
     }
 
     tr:hover {
-        background-color: #555555;
+        background-color:rgb(34, 48, 78);
         transition: 0.3s ease-in-out;
     }
     a {
-        color:rgb(255, 0, 0);
+        color:rgb(0, 0, 0);
         text-decoration: none;
     }
 
@@ -97,11 +97,11 @@ $tutorials = $adminObj->getAllTutorials();
     <h2 style="color: rgb(130, 170, 255);">Users</h2>
     <table border="1">
         <tr>
-        <th style="color:  #6883BC;">User ID</th>
-        <th style="color:  #6883BC;">Name</th>
-        <th style="color:  #6883BC;">Email</th>
-        <th style="color:  #6883BC">Role</th>
-        <th style="color:  #6883BC;">Action</th>
+        <th style="color:rgb(0, 0, 0);">User ID</th>
+        <th style="color:rgb(0, 0, 0);">Name</th>
+        <th style="color:rgb(0, 0, 0);">Email</th>
+        <th style="color:rgb(0, 0, 0)">Role</th>
+        <th style="color:rgb(0, 0, 0);">Action</th>
         </tr>
         <?php foreach($users as $user): ?>
             <tr>
@@ -116,12 +116,12 @@ $tutorials = $adminObj->getAllTutorials();
     <h2 style="color: rgb(130, 170, 255);">Tutorials</h2>
     <table border="1">
         <tr>
-        <th style="color:  #6883BC;">Tutorial ID</th>
-        <th style="color:  #6883BC">Title</th>
-        <th style="color:  #6883BC;">Description</th>
-        <th style="color:  #6883BC;">Author</th>
-        <th style="color:  #6883BC;">Created At</th>
-        <th style="color:  #6883BC;">Action</th>
+        <th style="color:rgb(0, 0, 0);">Tutorial ID</th>
+        <th style="color:rgb(0, 0, 0)">Title</th>
+        <th style="color:rgb(0, 0, 0);">Description</th>
+        <th style="color:rgb(0, 0, 0);">Author</th>
+        <th style="color:rgb(0, 0, 0);">Created At</th>
+        <th style="color:rgb(0, 0, 0);">Action</th>
         </tr>
         <?php foreach($tutorials as $tutorial): ?>
             <tr>
