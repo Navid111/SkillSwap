@@ -322,7 +322,7 @@ $categoryCount = 8; // Placeholder value
         .tutorial-title {
             font-size: 18px;
             font-weight: 500;
-            color: var(--on-surface);
+            color: #084a7c;
             margin-bottom: 8px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -396,7 +396,6 @@ $categoryCount = 8; // Placeholder value
         }
 
         .view-btn:hover {
-            background-color: var(--primary-light);
         }
 
         .view-btn .material-icons {
