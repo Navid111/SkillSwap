@@ -75,13 +75,14 @@ $tutorials = $adminObj->getAllTutorials();
         transition: 0.3s ease-in-out;
     }
     a {
-        color:rgb(0, 0, 0);
+        color: yellow;
         text-decoration: none;
     }
 
     a:hover {
         text-decoration: underline;
     }
+	
 	footer {
         background-color: black;
         color: white;
