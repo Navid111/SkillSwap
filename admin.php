@@ -113,7 +113,7 @@ $adminInbox = $messageObj->getMessagesForUser($_SESSION['user_id']);
                 <td><?php echo htmlspecialchars($user['name']); ?></td>
                 <td><?php echo htmlspecialchars($user['email']); ?></td>
                 <td><?php echo htmlspecialchars($user['role']); ?></td>
-                <td><a href="delete_user.php?id=<?php echo $user['user_id']; ?>">Delete</a></td>
+                <td><a href="delete_user.php?user_id=<?php echo $user['user_id']; ?>" onclick="return confirm('Are you sure you want to delete this user?')">Delete</a></td>
             </tr>
         <?php endforeach; ?>
     <table border="1">
