@@ -61,5 +61,19 @@ class Tutorial {
         $stmt->bindParam(':tutorial_id', $tutorial_id);
         return $stmt->execute();
     }
+	
+	public function searchTutorials($keyword) {
+    $query = "SELECT t.*, u.name as author 
+              FROM " . $this->table . " t 
+              JOIN users u ON t.user_id = u.user_id 
+              WHERE t.title LIKE :keyword OR t.description LIKE :keyword 
+              ORDER BY t.created_at DESC";
+              
+    $stmt = $this->conn->prepare($query);
+    $keyword = "%{$keyword}%";
+    $stmt->bindParam(':keyword', $keyword);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
 }
 ?>
