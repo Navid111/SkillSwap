@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2025 at 11:28 PM
+-- Generation Time: Apr 28, 2025 at 07:09 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,15 +35,6 @@ CREATE TABLE `comments` (
   `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `comments`
---
-
-INSERT INTO `comments` (`comment_id`, `tutorial_id`, `user_id`, `comment`, `created_at`) VALUES
-(1, 5, 2, 'Could you explain?', '2025-04-10 02:25:16'),
-(2, 4, 2, 'Could you explain?', '2025-04-10 02:25:40'),
-(3, 2, 2, 'Could you explain?', '2025-04-10 02:26:06');
-
 -- --------------------------------------------------------
 
 --
@@ -63,10 +54,7 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`message_id`, `sender_id`, `receiver_id`, `message`, `sent_at`) VALUES
-(1, 2, 3, 'Hello Navid, How are you?', '2025-04-10 02:00:24'),
-(2, 3, 2, 'Hey, I\'m fine, how are you?', '2025-04-10 02:05:24'),
-(3, 4, 2, 'Hello', '2025-04-10 02:12:03'),
-(4, 4, 3, 'Hi', '2025-04-10 02:12:27');
+(1, 6, 1, 'Hello, please terminate my account.', '2025-04-28 23:08:22');
 
 -- --------------------------------------------------------
 
@@ -80,15 +68,6 @@ CREATE TABLE `ratings` (
   `user_id` int(11) DEFAULT NULL,
   `rating` int(11) DEFAULT NULL CHECK (`rating` between 1 and 5)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `ratings`
---
-
-INSERT INTO `ratings` (`rating_id`, `tutorial_id`, `user_id`, `rating`) VALUES
-(1, 5, 2, 5),
-(2, 4, 2, 4),
-(3, 2, 2, 5);
 
 -- --------------------------------------------------------
 
@@ -109,10 +88,16 @@ CREATE TABLE `tutorials` (
 --
 
 INSERT INTO `tutorials` (`tutorial_id`, `user_id`, `title`, `description`, `created_at`) VALUES
-(1, 2, 'Hello World', 'This is a Test Tutorial,\r\nWelcome.', '2025-03-22 00:31:08'),
-(2, 3, 'Welcome World', 'This is also a Test Tutorial,\r\nHello!', '2025-03-22 00:32:11'),
-(4, 3, 'Another Test', 'Thank You', '2025-03-27 14:01:02'),
-(5, 4, 'Welcome to The NewAge', 'Hello World, Welcome to The NewAge!', '2025-04-10 02:11:37');
+(1, 2, 'Building Your First Website with HTML and CSS', 'Learn the basics of creating a simple and responsive website using only HTML and CSS. This tutorial will cover structure, styling, and simple layout techniques.', '2025-04-28 23:00:32'),
+(2, 2, 'Introduction to Python Programming for Beginners', 'Start coding with Python! This tutorial walks you through setting up Python, writing your first script, and understanding fundamental concepts like variables, loops, and functions.', '2025-04-28 23:00:52'),
+(3, 3, 'Getting Started with Adobe Photoshop: A Beginner\'s Guide', 'Explore Photoshop’s basic tools and features. This tutorial will help you perform simple edits, manage layers, and create your first digital artwork.\r\n\r\n', '2025-04-28 23:01:58'),
+(4, 3, 'How to Create a Mobile App with Flutter', 'Discover how to build a cross-platform mobile app using Google\'s Flutter framework. This guide will take you through setting up your environment and building a simple app.', '2025-04-28 23:02:36'),
+(5, 4, 'Mastering the Basics of Microsoft Excel', 'Learn how to navigate Microsoft Excel, use formulas, create charts, and manage simple data sets for personal or professional use.', '2025-04-28 23:03:45'),
+(6, 4, 'Starting a Blog with WordPress: Step-by-Step', 'This tutorial guides you through choosing a domain, setting up WordPress, selecting a theme, and publishing your first blog post.', '2025-04-28 23:04:04'),
+(7, 5, 'Basic Photography Tips: How to Take Better Photos Today', 'Improve your photography skills with simple tips on composition, lighting, and camera settings, whether you’re using a smartphone or DSLR.', '2025-04-28 23:05:09'),
+(8, 5, 'Creating Your First Game with Unity 3D', 'Get an introduction to Unity 3D by developing a basic 2D platformer. Learn about scenes, objects, scripting, and basic physics.\r\n\r\n', '2025-04-28 23:05:31'),
+(9, 6, 'How to Set Up a Home Network for Beginners', 'Learn the steps to set up your own home network, including selecting the right hardware, securing your connection, and optimizing your Wi-Fi.', '2025-04-28 23:06:12'),
+(10, 6, 'Crafting Your First Email Marketing Campaign with Mailchimp', 'A beginner-friendly guide to setting up an account, designing an email, creating a mailing list, and launching your first email marketing campaign.', '2025-04-28 23:06:37');
 
 -- --------------------------------------------------------
 
@@ -133,10 +118,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `name`, `email`, `password`, `role`) VALUES
-(1, 'Administrator', 'admin@user.com', '$2y$10$i68U4FIZQHvf8NKEp0nPLOe2oFnBXkCTXBhf93WxNvb9QlGe5lUK6', 'admin'),
-(2, 'Talal', 'talal@teacher.com', '$2y$10$qx/NlkI74tSxfgOZN6D64elBlfhuSrHtccVPdX/2zFarzUAzmF4cq', 'teacher'),
-(3, 'Navid', 'navid@teacher.com', '$2y$10$fuG2j5Wn8OBRQjIBJP7Kcu92t2QYfMmVZVbm0OsgVGZzb5Vy7NpWu', 'teacher'),
-(4, 'Synthia', 'synthia@student.com', '$2y$10$uLOeVi5odF/UdQZiTibqIOaLf9T5IqAQqECwSdbv3xfrKfnxoSWZS', 'student');
+(1, 'Admin', 'admin@user.com', '$2y$10$upnc87Pa1pquj4bJqawC3OgCXrSNC0e3ROiEw3mZgwU56ovuahojC', 'admin'),
+(2, 'Talal', 'talal@user.com', '$2y$10$KquaMeOystUX9R8h0roD6uZxn7BKBAk6y/xMuqcTLaUbEcukCxrKW', 'teacher'),
+(3, 'Navid', 'navid@user.com', '$2y$10$rXkFxR5CAJejdpmjVBk0WeHANun.IDUz80NXnZqKobCUaobX1OzAq', 'teacher'),
+(4, 'Synthia', 'synthia@user.com', '$2y$10$87Tml5RH49sNrrGoO1MhuOwGuj0cWUaC5CEieylw8ZMhYZDt4jMxG', 'teacher'),
+(5, 'Joti', 'joti@user.com', '$2y$10$kIt68JEpmR19ly0oRuXMTe6wMF2DFCjIGJrtKCl6iVIRUu1s2rTAS', 'teacher'),
+(6, 'Test', 'test@user.com', '$2y$10$vfHWeGcs2Yl/XiTyM7262uh2v5KlfYt0J3i8HIL5qDpoiI7GCIoEC', 'student');
 
 --
 -- Indexes for dumped tables
@@ -188,31 +175,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `ratings`
 --
 ALTER TABLE `ratings`
-  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tutorials`
 --
 ALTER TABLE `tutorials`
-  MODIFY `tutorial_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `tutorial_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
