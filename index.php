@@ -134,12 +134,11 @@ $categoryCount = 8; // Placeholder value
         }
 
         .btn:hover {
-            background-color: rgba(26, 115, 232, 0.08);
+
         }
 
         .btn-contained:hover {
-            background-color: var(--primary-dark);
-            box-shadow: var(--elevation-1);
+
         }
 
         .btn .material-icons {

@@ -34,15 +34,18 @@ class Message {
     }
 
     // Get all messages for a user (inbox view)
-    public function getMessagesForUser($user_id) {
-        $query = "SELECT m.*, u.name as sender_name FROM " . $this->table . " m 
-                  JOIN users u ON m.sender_id = u.user_id 
-                  WHERE receiver_id = :user_id
-                  ORDER BY sent_at DESC";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':user_id', $user_id);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+	public function getMessagesForUser($user_id) {
+		$query = "SELECT m.message_id, m.sender_id, m.message, m.sent_at, 
+                     u.name as sender_name, u.email as sender_email
+              FROM " . $this->table . " m
+              JOIN users u ON m.sender_id = u.user_id
+              WHERE m.receiver_id = :user_id
+              ORDER BY m.sent_at DESC";
+		$stmt = $this->conn->prepare($query);
+		$stmt->bindParam(':user_id', $user_id);
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
 }
 ?>

@@ -7,12 +7,15 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_role'] != 'admin'){
 
 require_once 'includes/db.php';
 require_once 'classes/Admin.php';
+require_once 'classes/Message.php';
 
 $db = (new Database())->getConnection();
 $adminObj = new Admin($db);
+$messageObj = new Message($db);
 
 $users = $adminObj->getAllUsers();
 $tutorials = $adminObj->getAllTutorials();
+$adminInbox = $messageObj->getMessagesForUser($_SESSION['user_id']);
 ?>
 
 <?php include __DIR__ . '/includes/header.php'; ?>
@@ -110,10 +113,37 @@ $tutorials = $adminObj->getAllTutorials();
                 <td><?php echo htmlspecialchars($user['name']); ?></td>
                 <td><?php echo htmlspecialchars($user['email']); ?></td>
                 <td><?php echo htmlspecialchars($user['role']); ?></td>
-                <td><a href="delete_user.php?id=<?php echo $user['user_id']; ?>">Delete</a></td>
+                <td><a href="delete_user.php?user_id=<?php echo $user['user_id']; ?>" onclick="return confirm('Are you sure you want to delete this user?')">Delete</a></td>
             </tr>
         <?php endforeach; ?>
     <table border="1">
+	
+	<h2 style="color: rgb(130, 170, 255);">Inbox</h2>
+	<table border="1">
+    <tr>
+        <th style="color:rgb(0, 0, 0);">Sender Name</th>
+        <th style="color:rgb(0, 0, 0);">Sender Email</th>
+        <th style="color:rgb(0, 0, 0);">Message</th>
+        <th style="color:rgb(0, 0, 0);">Sent At</th>
+        <th style="color:rgb(0, 0, 0);">Action</th>
+    </tr>
+    <?php if (!empty($adminInbox)): ?>
+        <?php foreach ($adminInbox as $message): ?>
+            <tr>
+                <td><?php echo htmlspecialchars($message['sender_name']); ?></td>
+                <td><?php echo htmlspecialchars($message['sender_email']); ?></td>
+                <td><?php echo nl2br(htmlspecialchars($message['message'])); ?></td>
+                <td><?php echo htmlspecialchars($message['sent_at']); ?></td>
+                <td>
+                    <a href="chat.php?receiver_id=<?php echo $message['sender_id']; ?>">Reply</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <tr><td colspan="5" style="text-align:center;">No new messages.</td></tr>
+    <?php endif; ?>
+	<table border="1">
+	
     <h2 style="color: rgb(130, 170, 255);">Tutorials</h2>
     <table border="1">
         <tr>
