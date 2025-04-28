@@ -12,6 +12,15 @@ $tutorialObj = new Tutorial($db);
 $ratingCommentObj = new RatingComment($db);
 $tutorials = $tutorialObj->getAllTutorials();
 
+// Handling search query
+$searchQuery = isset($_GET['search']) ? trim($_GET['search']) : '';
+
+if ($searchQuery != '') {
+    $tutorials = $tutorialObj->searchTutorials($searchQuery);
+} else {
+    $tutorials = $tutorialObj->getAllTutorials();
+}
+
 // Get total tutorials count for statistics
 $tutorialCount = count($tutorials);
 // You would typically get these from your database
@@ -572,16 +581,23 @@ $categoryCount = 8; // Placeholder value
     <section class="hero">
         <div class="container">
         <h1 class="hero-title"
-    style="text-shadow: 1px 2px 2px rgb(0, 0, 0);">
-  Find the Perfect Tutorial to Learn New Skills
-</h1>
+		style="text-shadow: 1px 2px 2px rgb(0, 0, 0);">
+		Find the Perfect Tutorial to Learn New Skills
+		</h1>
+              
+		<div class="search-container">
+			<form action="index.php" method="get" style="position: relative;">
+			<span class="material-icons search-icon">search</span>
+			<input 
+            type="text" 
+            name="search" 
+            class="search-input" 
+            placeholder="Search for tutorials..." 
+            value="<?php echo htmlspecialchars($searchQuery); ?>"
+			>
+			</form>
+		</div>
 
-            
-            
-            <div class="search-container">
-                <span class="material-icons search-icon">search</span>
-                <input type="text" class="search-input" placeholder="Search for tutorials...">
-            </div>
         </div>
     </section>
 
@@ -609,7 +625,7 @@ $categoryCount = 8; // Placeholder value
                         <div class="tutorial-meta">
                             <p>
                                 <span class="material-icons">person</span>
-                                <?php echo htmlspecialchars($tutorial['author']); ?>
+                                <?php echo htmlspecialchars($tutorial['author'] ?? 'Unknown Author'); ?>
                             </p>
                             <p>
                                 <span class="material-icons">calendar_today</span>
