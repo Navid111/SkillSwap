@@ -32,6 +32,10 @@ $otherTutorials = array_filter($allTutorials, function($tutorial) {
                 <p><span class="label">Name:</span> <?php echo htmlspecialchars($userProfile['name']); ?></p>
                 <p><span class="label">Email:</span> <?php echo htmlspecialchars($userProfile['email']); ?></p>
                 <p><span class="label">Role:</span> <?php echo htmlspecialchars($userProfile['role']); ?></p>
+				<!-- Contact Admin Button -->
+                <?php if ($userProfile['role'] === 'teacher' || $userProfile['role'] === 'student'): ?>
+                    <a href="chat.php?receiver_id=1" class="btn btn-primary">Contact Admin</a>
+                <?php endif; ?>
             </div>
         </div>
     </section>
