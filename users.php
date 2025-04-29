@@ -8,12 +8,15 @@ if(!isset($_SESSION['user_id'])) {
 require_once 'includes/db.php';
 require_once 'classes/User.php';
 require_once 'classes/Tutorial.php';
+require_once 'classes/Message.php';
 
 $db = (new Database())->getConnection();
 $userObj = new User($db);
 $tutorialObj = new Tutorial($db);
+$messageObj = new Message($db);
 
 $userProfile = $userObj->getProfile($_SESSION['user_id']);
+$userInbox = $messageObj->getMessagesForUser($_SESSION['user_id']);
 $selfTutorials = $tutorialObj->getTutorialsByUser($_SESSION['user_id']);
 
 $allTutorials = $tutorialObj->getAllTutorials();
@@ -33,13 +36,43 @@ $otherTutorials = array_filter($allTutorials, function($tutorial) {
                 <p><span class="label">Email:</span> <?php echo htmlspecialchars($userProfile['email']); ?></p>
                 <p><span class="label">Role:</span> <?php echo htmlspecialchars($userProfile['role']); ?></p>
 				<!-- Contact Admin Button -->
-                <?php if ($userProfile['role'] === 'teacher' || $userProfile['role'] === 'student'): ?>
+                <?php if ($userProfile['role'] != 'admin'): ?>
                     <a href="chat.php?receiver_id=1" class="btn btn-primary">Contact Admin</a>
                 <?php endif; ?>
             </div>
         </div>
     </section>
 
+	<?php if ($userProfile['role'] != 'admin'): ?>
+    <div>
+		<h2 style="color: rgb(130, 170, 255); text-shadow: 2px 3px 3px rgb(0, 0, 0); border-bottom: 2px solid var(--primary); padding-bottom: var(--space-sm);">My Inbox</h2>
+			<table>
+				<tr>
+					<th style="color:rgb(0, 0, 0);">Sender Name</th>
+					<th style="color:rgb(0, 0, 0);">Sender Email</th>
+					<th style="color:rgb(0, 0, 0);">Message</th>
+					<th style="color:rgb(0, 0, 0);">Sent At</th>
+					<th style="color:rgb(0, 0, 0);">Action</th>
+				</tr>
+			<?php if (!empty($userInbox)): ?>
+			<?php foreach ($userInbox as $message): ?>
+				<tr>
+					<td><?php echo htmlspecialchars($message['sender_name']); ?></td>
+					<td><?php echo htmlspecialchars($message['sender_email']); ?></td>
+					<td><?php echo nl2br(htmlspecialchars($message['message'])); ?></td>
+					<td><?php echo htmlspecialchars($message['sent_at']); ?></td>
+                <td>
+                    <a href="chat.php?receiver_id=<?php echo $message['sender_id']; ?>">Reply</a>
+                </td>
+				</tr>
+			<?php endforeach; ?>
+			<?php else: ?>
+				<tr><td colspan="5" style="text-align:center;">No new messages.</td></tr>
+			<?php endif; ?>
+			</table>
+    </div>
+    <?php endif; ?>
+	
     <section class="tutorials-section">
         <div class="section-header">
             <h2>My Tutorials</h2>
@@ -339,6 +372,56 @@ $otherTutorials = array_filter($allTutorials, function($tutorial) {
             grid-template-columns: 1fr;
         }
     }
+	
+	table {
+        width: 90%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background-color: #1c1c1c;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        border-radius: 8px;
+        overflow: hidden;
+        table-layout: fixed; /* Important for wrapping */
+        word-wrap: break-word;		
+    }
+	
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+		color: #ffffff;
+        vertical-align: top;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+        max-width: 200px; /* Adjust as needed */
+    }
+
+    th {
+        background-color:rgb(255, 255, 255);
+        color: #ffffff;
+    }
+
+    tr:nth-child(even) {
+        background-color: #395b90;
+    }
+
+    tr:nth-child(odd) {
+        background-color:rgb(92, 119, 155);
+    }
+
+    tr:hover {
+        background-color:rgb(34, 48, 78);
+        transition: 0.3s ease-in-out;
+    }
+    a {
+        color: yellow;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+	
 	footer {
 		background-color: rgba(0, 0, 0, 0.8);
 		text-align: center;
