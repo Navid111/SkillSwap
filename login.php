@@ -243,10 +243,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <div class="form-group">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
+                    <div class="forgot-password">
+                        <a href="reset_password.php" class="forgot-link">Forgot Password?</a>
+                    </div>
                 </div>
                 
                 <button type="submit" class="login-btn">Log In</button>
-                
+
                 <div class="form-footer">
                     <div class="remember-me">
                         <input type="checkbox" id="remember" name="remember">
