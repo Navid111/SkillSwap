@@ -112,7 +112,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         --input-bg: #f5f8ff;
         --shadow-color: rgba(63, 81, 181, 0.15);
     }
-
+    
+    body {
+        font-family: 'Georgia', serif;
+        line-height: 1.6;
+        color: var(--text);
+        background: url('images/image4.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
+    
     .container {
         max-width: 800px;
         margin: 40px auto;
@@ -257,5 +265,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .btn-save, .btn-cancel {
             width: 100%;
         }
+    }
+    footer {
+        background-color: black;
+        color: white;
+        text-align: center;
+        padding: 5px;
+        margin-top: 50px;
     }
 </style>
